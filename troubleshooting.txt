@@ -1,0 +1,29 @@
+For that annoying "Developer Tools needs to take control... password...":
+	sudo /usr/sbin/DevToolsSecurity --enable
+
+g++ -Wall for all warnings
+
+gdb:
+gdb lk.test
+	directory test/src
+	break PointAccountantTest.cpp:87
+	run
+	print data.nextPts.size()
+	continue
+	quit
+
+Linker problems:
+0. add to makefile
+1. clean & build
+
+If gdb can't set breakpoint: try add compiler flags -g and rebuild
+
+STK build problems "MUTEX" not found etc:
+add this def as compiler flag -D__MACOSX_CORE__
+
+Compiling OpenCV with Clang c++11:
+
+cmake ../  -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+
+fix narrowing errors as the compiler suggests
+fix defines
