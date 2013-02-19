@@ -36,6 +36,10 @@ tests: $(test_entry_point) $(test_assemblies) $(main_assemblies)
 run_tests: tests
 	./$(test_executable)
 
+sample: sample.cpp $(main_assemblies)
+	ctags -R .
+	$(cpp) $(cpp_flags) $^ -o sample $(opencv_libs) $(boost_libs) $(stk_libs)
+
 clean:
 	rm -f $(main_executable)
 	rm -f $(main_assemblies)
