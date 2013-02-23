@@ -5,7 +5,7 @@ main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o Sou
 main_executable = lk
 
 test_entry_point = test.cpp
-test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o
+test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o
 test_executable = lk.test
 
 opencv_libs = -L /usr/local/lib/ -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc
@@ -19,7 +19,7 @@ cpp_flags = -I include -I include/test -Wall
 vpath %.hpp include include/test
 vpath %.cpp src src/test
 
-%.o: %.cpp
+%.o: %.cpp interpolation.hpp
 	$(cpp) -c $< $(cpp_flags) $(defs) -o $@
 
 all: $(entry_point) $(main_assemblies)

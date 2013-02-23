@@ -27,3 +27,6 @@ cmake ../  -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLA
 
 fix narrowing errors as the compiler suggests
 fix defines
+
+Vim fails to color syntax:
+rm the ~/.vim/views/FILENAME
