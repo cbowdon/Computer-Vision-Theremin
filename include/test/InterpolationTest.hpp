@@ -18,7 +18,7 @@ namespace test
 		private:
 			const bool linear () const;
 			const bool smoothstep () const;
-			const bool weighted () const;
+			const bool lowpass () const;
 			const bool spline () const;
 	};
 }
