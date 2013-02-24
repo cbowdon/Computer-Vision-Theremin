@@ -20,6 +20,7 @@ namespace test
 			const bool smoothstep () const;
 			const bool lowpass () const;
 			const bool spline () const;
+			const bool cosine () const;
 	};
 }
 
