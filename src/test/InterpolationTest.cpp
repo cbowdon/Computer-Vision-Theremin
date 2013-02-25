@@ -23,30 +23,13 @@ bool test::InterpolationTest::run ()
 const bool test::InterpolationTest::linear () const
 {
 	const size_t nSteps = 10;
-	std::vector<double> outputVec(nSteps);
-	lk::interpolation::linear(begin(outputVec), 0.0, 5.0, nSteps);
-
-	bool success = outputVec[0] == 0.0;
-	success &= outputVec[1] == 0.5;
-	success &= outputVec[2] == 1.0;
-	success &= outputVec[3] == 1.5;
-	success &= outputVec[4] == 2.0;
-	success &= outputVec[5] == 2.5;
-	success &= outputVec[6] == 3.0;
-	success &= outputVec[7] == 3.5;
-	success &= outputVec[8] == 4.0;
-	success &= outputVec[9] == 4.5;
-
 	std::vector<double> x { 0.0, 1.0, 2.0 }, s((x.size() - 1) * nSteps);
-	lk::interpolation::s::linear(begin(x), end(x), begin(s), nSteps);
+	lk::interpolation::linear(begin(x), end(x), begin(s), nSteps);
 
-	success &= s[0] == 0.0;
+	bool success = s[0] == 0.0;
 	success &= s[1] == 0.1;
 	success &= s[11] == 1.1;
 	success &= s[19] == 1.9;
-
-//	std::for_each(begin(s), end(s), [](double d) { std::cout << d << ", "; });
-//	std::cout << std::endl;
 
 	return success;
 }
@@ -54,15 +37,22 @@ const bool test::InterpolationTest::linear () const
 const bool test::InterpolationTest::smoothstep () const
 {
 	const size_t nSteps = 10;
-	std::vector<long double> outputVec(nSteps);
-	lk::interpolation::smoothstep(begin(outputVec), 0.0, 3.0, nSteps);
+	std::vector<double> inputVec { 0.0, 3.0, 4.0, 2.0 };
+	std::vector<double> outputVec ((inputVec.size() - 1) * nSteps);
+
+	lk::interpolation::smooth(begin(inputVec), end(inputVec), begin(outputVec), nSteps);
 
 	bool success = outputVec[0] == 0.0;
 	success &= outputVec[2] == 3.0 * 0.2 * 0.2 * 2.6;
 	success &= outputVec[4] == 3.0 * 0.4 * 0.4 * 2.2;
 	success &= outputVec[6] == 1.944;
 	success &= outputVec[9] == 2.916;
+	success &= outputVec[10] == 3.0;
+	success &= outputVec[20] == 4.0;
+
 	assert(success);
+
+	std::for_each(begin(outputVec), end(outputVec), [](double d){ std::cout << d << std::endl; });
 
 	return success;
 }
@@ -91,17 +81,11 @@ const bool test::InterpolationTest::lowpass () const
 const bool test::InterpolationTest::cosine () const
 {
 	const size_t nSteps = 10;
-	std::vector<double> outputVec(nSteps);
-	lk::interpolation::cosine(begin(outputVec), 0.0, 2.0, nSteps);
-
-	bool success = outputVec[0] = 0.0;
-	success &= outputVec[5] == 1.0;
 
 	std::vector<double> x { 0.0, 1.0, 2.0 }, y((x.size() - 1) * nSteps);
-	lk::interpolation::s::cosine(begin(x), end(x), begin(y), nSteps);
+	lk::interpolation::cosine(begin(x), end(x), begin(y), nSteps);
 
-	std::for_each(begin(y), end(y), [](double d) { std::cout << d << " "; });
-	std::cout << std::endl;
+	bool success = false;
 
 	return success;
 }
@@ -109,24 +93,17 @@ const bool test::InterpolationTest::cosine () const
 const bool test::InterpolationTest::spline () const
 {
 	const size_t nSteps = 10;
-	std::vector<double> shortOutputVec(nSteps);
-	lk::interpolation::spline(begin(shortOutputVec), 0.0, 0.0, 1.0, 1.0, nSteps);
-
-	std::cout << std::endl;
-	bool success = shortOutputVec[0] == 0.0;
-	success &= shortOutputVec[5] == 0.5;
-
-	std::vector<double> inputVec { 0.0, 0.5, 1.5, 2.0, 2.0 }; 
-	std::vector<double> outputVec(nSteps * inputVec.size());
+	std::vector<double> inputVec { 0.0, 0.5, 1.5, 2.0, 1.5, 2.0, 3.0, 1.0 };
+	std::vector<double> outputVec(nSteps * (inputVec.size() - 1));
 	lk::interpolation::spline(begin(inputVec), end(inputVec), begin(outputVec), nSteps);
 
-	success &= outputVec[0] == inputVec[0];
+	bool success = outputVec[0] == inputVec[0];
 	success &= outputVec[10] == inputVec[1];
 	success &= outputVec[20] == inputVec[2];
 	success &= outputVec[30] == inputVec[3];
 	success &= outputVec[40] == inputVec[4];
-
-	std::for_each(begin(outputVec), end(outputVec), [](double d){ std::cout << d << std::endl; });
+	success &= outputVec[50] == inputVec[5];
+	success &= outputVec[60] == inputVec[6];
 
 	return success;
 }
