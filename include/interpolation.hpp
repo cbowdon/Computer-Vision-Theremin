@@ -10,9 +10,10 @@ namespace lk
 {
 	namespace interpolation
 	{
+		const double PI = 3.14159265;
+
 		namespace details
 		{
-			const double PI = 3.14159265;
 
 			template <class Iterator, class Function>
 				void interpolate2 (Iterator it, Iterator end, Iterator out, size_t nSteps, Function func)
@@ -147,21 +148,34 @@ namespace lk
 		template <class Iterator, class T>
 			void lowpass (Iterator it, const T value0, const T value1, size_t nSteps, double filterFactor=0.5)
 			{
-				std::cout << "\tparams: " << value0 << ", " << value1 << ", " <<  nSteps << std::endl;
-
 				// s[0] = x[0]
 				*it = value0;
 				T prev = *it;
 				it++;
 
-				std::cout << "\ts[0] = " << *it << std::endl;
+				std::cout << "s[" << 0 << "] = " << *it << std::endl;
 
 				// s[i] = a * x[i] + (1-a) * s[i-1]
 				for (double i = 1; i < nSteps; i++, it++)
 				{
 					*it = (value1 * filterFactor) + (prev * (1.0 - filterFactor));
 					prev = *it;
-					std::cout << "\ts[" << i << "] = " << *it << std::endl;
+					std::cout << "s[" << i << "] = " << *it << std::endl;
+				}
+			}
+
+		template <class Iterator>
+			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
+			{
+				*out = *it;
+				out++;
+
+				double prev = *out;
+				for (; (it+1) != end; it++, out++)
+				{
+					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+					prev = *out;
+					std::cout << *out << std::endl;
 				}
 			}
 	}
