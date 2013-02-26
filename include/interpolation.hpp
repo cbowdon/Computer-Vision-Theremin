@@ -153,14 +153,11 @@ namespace lk
 				T prev = *it;
 				it++;
 
-				std::cout << "s[" << 0 << "] = " << *it << std::endl;
-
 				// s[i] = a * x[i] + (1-a) * s[i-1]
 				for (double i = 1; i < nSteps; i++, it++)
 				{
 					*it = (value1 * filterFactor) + (prev * (1.0 - filterFactor));
 					prev = *it;
-					std::cout << "s[" << i << "] = " << *it << std::endl;
 				}
 			}
 
@@ -169,13 +166,13 @@ namespace lk
 			{
 				*out = *it;
 				out++;
+				it++;
 
 				double prev = *out;
-				for (; (it+1) != end; it++, out++)
+				for (; it != end; it++, out++)
 				{
 					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
 					prev = *out;
-					std::cout << *out << std::endl;
 				}
 			}
 	}
