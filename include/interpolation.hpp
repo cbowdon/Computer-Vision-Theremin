@@ -161,40 +161,48 @@ namespace lk
 				}
 			}
 
-		//		template <class Iterator>
-		//			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
-		//			{
-		//				*out = *it;
-		//				out++;
-		//				it++;
+//		template <class Iterator>
+//			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
+//			{
+//				*out = *it;
+//				out++;
+//				it++;
 
-		//				double prev = *out;
-		//				for (; it != end; it++, out++)
-		//				{
-		//					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-		//					prev = *out;
-		//				}
-		//			}
+//				double prev = *out;
+//				for (; it != end; it++, out++)
+//				{
+//					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+//					prev = *out;
+//				}
+//			}
 
 		template <class Iterator>
 			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
 			{
-				// s[0] = x[0]
+				size_t j = 0;
 				*out = *it;
-				double prev = *out;
-				std::cout << "\t" << *out << std::endl;
-
 				out++;
+				it++;
+				std::cout << "s[" << j << "] = " << *out << std::endl;
+				double prev = *out;
 
+				for (double i = 0; i < nSteps; i++, out++)
+				{
+					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+					prev = *out;
+					std::cout << "s[" << j << "] = " << *out << std::endl;
+					j++;
+				}
+
+				j++;
 				for (; it != end; it++)
 				{
-					std::cout << *it << " : " << std::endl;
-					// s[i] = a * x[i] + (1-a) * s[i-1]
-					for (double i = 1; i < nSteps; out++)
+					for (double i = 0; i < nSteps; i++, out++)
 					{
 						*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
 						prev = *out;
-						std::cout << "\t" << *out << std::endl;
+						std::cout << "s[" << j << "] = " << *out << std::endl;
+						j++;
 					}
 				}
 			}

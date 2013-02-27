@@ -73,31 +73,21 @@ const bool test::InterpolationTest::lowpass () const
 	success &= outputVec[8] == 1.9921875;
 	success &= outputVec[9] == 1.99609375;
 
-	std::vector<double> x { 0.0, 2.0 };
+	std::vector<double> x { 0.0, 2.0, 2.0 };
 	std::vector<double> y((x.size() -1) * nSteps);
 
 	lk::interpolation::lowpass(begin(x), end(x), begin(y), nSteps, filterFactor);
 
 	success &= y[0] == 0.0;
-	assert(success);
 	success &= y[1] == 1.0;
-	assert(success);
 	success &= y[2] == 1.5;
-	assert(success);
 	success &= y[3] == 1.75;
-	assert(success);
 	success &= y[4] == 1.875;
-	assert(success);
 	success &= y[5] == 1.9375;
-	assert(success);
 	success &= y[6] == 1.96875;
-	assert(success);
 	success &= y[7] == 1.984375;
-	assert(success);
 	success &= y[8] == 1.9921875;
-	assert(success);
 	success &= y[9] == 1.99609375;
-	assert(success);
 
 	return success;
 }
