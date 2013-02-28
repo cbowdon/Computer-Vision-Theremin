@@ -148,12 +148,12 @@ namespace lk
 		template <class Iterator, class T>
 			void lowpass (Iterator it, const T value0, const T value1, size_t nSteps, double filterFactor=0.5)
 			{
-				// s[0] = x[0]
+				//				 s[0] = x[0]
 				*it = value0;
 				T prev = *it;
 				it++;
 
-				// s[i] = a * x[i] + (1-a) * s[i-1]
+				//				 s[i] = a * x[i] + (1-a) * s[i-1]
 				for (double i = 1; i < nSteps; i++, it++)
 				{
 					*it = (value1 * filterFactor) + (prev * (1.0 - filterFactor));
@@ -161,50 +161,62 @@ namespace lk
 				}
 			}
 
-//		template <class Iterator>
-//			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
-//			{
-//				*out = *it;
-//				out++;
-//				it++;
+		template <class Iterator>
+			void lowpass (Iterator it, Iterator end, Iterator out, double filterFactor)
+			{
+				*out = *it;
+				out++;
+				it++;
 
-//				double prev = *out;
-//				for (; it != end; it++, out++)
-//				{
-//					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-//					prev = *out;
-//				}
-//			}
+				double prev = *out;
+				for (; it != end; it++, out++)
+				{
+					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+					prev = *out;
+				}
+			}
 
 		template <class Iterator>
 			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
 			{
-				size_t j = 0;
 				*out = *it;
 				out++;
 				it++;
-				std::cout << "s[" << j << "] = " << *out << std::endl;
-				double prev = *out;
 
-				for (double i = 0; i < nSteps; i++, out++)
-				{
-					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-					prev = *out;
-					std::cout << "s[" << j << "] = " << *out << std::endl;
-					j++;
-				}
-
-				j++;
 				for (; it != end; it++)
 				{
-					for (double i = 0; i < nSteps; i++, out++)
+					for (size_t i = 0; i < nSteps; i++)
 					{
-						*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-						prev = *out;
-						std::cout << "s[" << j << "] = " << *out << std::endl;
-						j++;
+						*out = *it;						
+						out++;
 					}
 				}
+				//				size_t j = 0;
+				//				*out = *it;
+				//				out++;
+				//				it++;
+				//				std::cout << "s[" << j << "] = " << *out << std::endl;
+				//				j++;
+				//				double prev = *out;
+
+				//				for (double i = 0; i < nSteps; i++, out++)
+				//				{
+				//					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+				//					prev = *out;
+				//					std::cout << "s[" << j << "] = " << *out << std::endl;
+				//					j++;
+				//				}
+
+				//				for (; (it+2) != end; it++)
+				//				{
+				//					for (double i = 0; i < nSteps; i++, out++)
+				//					{
+				//						*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
+				//						prev = *out;
+				//						std::cout << "s[" << j << "] = " << *out << std::endl;
+				//						j++;
+				//					}
+				//				}
 			}
 	}
 }
