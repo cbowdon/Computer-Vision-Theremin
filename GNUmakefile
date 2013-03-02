@@ -1,7 +1,7 @@
 # Run from binaries directory
 
 entry_point = main.o
-main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o
+main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o TrackFile.o
 main_executable = lk
 
 test_entry_point = test.cpp

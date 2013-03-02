@@ -118,7 +118,7 @@ const cv::Point2f lk::PointAccountant::getRange (const std::vector<cv::Point2f>&
 {
 	float maxX = 0, maxY = 0, minX = bounds.width, minY = bounds.height;
 	std::vector<cv::Point2f>::const_iterator it = points.begin();
-	for (; it != points.end(); it++)
+	for (; it != points.end(); ++it)
 	{
 		if (it->x > maxX)
 		{
