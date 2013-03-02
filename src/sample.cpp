@@ -12,14 +12,7 @@
 #include "VideoProvider.hpp"
 #include "TrackFile.hpp"
 
-typedef std::pair<size_t,cv::Point2d> datum;
-typedef std::vector<datum> dataVec;
-
-std::ostream& operator<<(std::ostream& ostr, const datum d)
-{
-	ostr << std::get<0>(d) << ", " << std::get<1>(d);
-	return ostr;
-}
+typedef std::vector<lk::trackDatum> dataVec;
 
 static bool pause = false;
 static dataVec clickData;
@@ -31,7 +24,7 @@ static void mouseClick (int event, int x, int y, int, void*)
 	if (event == CV_EVENT_LBUTTONDOWN)
 	{
 		cv::Point2d point(x, y);
-		clickData.push_back(datum(frameCount, point));
+		clickData.push_back(lk::trackDatum(frameCount, point));
 		pause = false;
 	}
 }
@@ -43,8 +36,8 @@ static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 	dataOut.resize(interpolatedSize);
 
 	std::vector<double> x(dataIn.size()), y(dataIn.size());
-	std::transform(begin(dataIn), end(dataIn), begin(x), [](datum d){ return std::get<1>(d).x; });
-	std::transform(begin(dataIn), end(dataIn), begin(y), [](datum d){ return std::get<1>(d).y; });
+	std::transform(begin(dataIn), end(dataIn), begin(x), [](lk::trackDatum d){ return std::get<1>(d).x; });
+	std::transform(begin(dataIn), end(dataIn), begin(y), [](lk::trackDatum d){ return std::get<1>(d).y; });
 
 	std::vector<size_t> frameIndices(interpolatedSize);
 	std::iota(begin(frameIndices), end(frameIndices), 0);
@@ -55,7 +48,7 @@ static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 
 	for (size_t i = 0; i < interpolatedSize; i++)
 	{
-		dataOut[i] = datum(frameIndices[i], cv::Point2d(x2[i], y2[i]));
+		dataOut[i] = lk::trackDatum(frameIndices[i], cv::Point2d(x2[i], y2[i]));
 	}
 }
 
@@ -63,7 +56,7 @@ int main (int argc, char** argv)
 {
 	std::string sampleFile = "resources/test.mov";
 	lk::VideoProvider vid(sampleFile);
-	lk::TrackFile file("resources/test.txt");
+	lk::TrackFile trackFile("resources/test.txt");
 
 	cv::namedWindow(sampleFile, 0);
 	cv::setMouseCallback(sampleFile, mouseClick, 0);
@@ -91,20 +84,20 @@ int main (int argc, char** argv)
 		cv::waitKey(10);
 	}
 
-	dataVec lerpdData;
-	interpolate(clickData, lerpdData);
+	dataVec interpolatedData;
+	interpolate(clickData, interpolatedData);
 
 	std::for_each
 	(	
-	 	begin(lerpdData),
-		end(lerpdData),
-		[&frame](datum& d) 
+	 	begin(interpolatedData),
+		end(interpolatedData),
+		[&frame](lk::trackDatum& d) 
 		{ 
 			cv::circle(frame, std::get<1>(d), 2, cv::Scalar(255,0,0), 3, 8);
-//			std::cout << std::get<1>(d) << std::endl; 
-			std::cout << d << std::endl;
 		}
 	);
+
+	trackFile.save(interpolatedData);
 
 	bool quit = false;
 	while (!quit)
