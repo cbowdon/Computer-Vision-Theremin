@@ -6,10 +6,12 @@
 #include <tuple>
 #include <utility>
 #include <algorithm>
+#include <numeric>
 #include <opencv2/core/core.hpp>
+#include "interpolation.hpp"
 #include "VideoProvider.hpp"
 
-typedef std::pair<size_t,cv::Point2f> datum;
+typedef std::pair<size_t,cv::Point2d> datum;
 typedef std::vector<datum> dataVec;
 
 std::ostream& operator<<(std::ostream& ostr, const datum d)
@@ -27,45 +29,71 @@ static void mouseClick (int event, int x, int y, int, void*)
 {
 	if (event == CV_EVENT_LBUTTONDOWN)
 	{
-		cv::Point2f point(x, y);
+		cv::Point2d point(x, y);
 		clickData.push_back(datum(frameCount, point));
 		pause = false;
 	}
 }
 
-// Fills dataOut with linear interpolation of dataIn's points
-static void lerp(const dataVec& dataIn, dataVec& dataOut)
+static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 {
+	const size_t nSteps = 10;
+	const size_t interpolatedSize = (dataIn.size() - 1) * nSteps;
+	dataOut.resize(interpolatedSize);
 
-//	dataOut.resize(dataIn.size() * 10);
+	std::vector<double> x(dataIn.size());
+	std::vector<double> y(dataIn.size());
+	std::transform(begin(dataIn), end(dataIn), begin(x), [](datum d){ return std::get<1>(d).x; });
+	std::transform(begin(dataIn), end(dataIn), begin(y), [](datum d){ return std::get<1>(d).y; });
 
-	dataVec::const_iterator it = begin(dataIn), nd = end(dataIn);
+	std::vector<size_t> frameIndices(interpolatedSize);
+	std::iota(begin(frameIndices), end(frameIndices), 0);
 
-	float fc0 = 0, fc1 = 0;
-	cv::Point2f pt0, pt1;
-	for (it = begin(dataIn); it != nd; it++)
+	std::vector<double> x2(interpolatedSize);
+	lk::interpolation::cubic(begin(x), end(x), begin(x2), nSteps);
+
+	std::vector<double> y2(interpolatedSize);
+	lk::interpolation::cubic(begin(y), end(y), begin(y2), nSteps);
+
+	for (size_t i = 0; i < interpolatedSize; i++)
 	{
-		fc1 = std::get<0>(*it);
-		pt1 = std::get<1>(*it);
-
-		float nFrame = fc1 - fc0;
-
-		float xDist = pt1.x - pt0.x;
-		float yDist = pt1.y - pt0.y;
-
-		float xIncrement = xDist / nFrame;
-		float yIncrement = yDist / nFrame;
-
-		for (size_t i = 0; i < nFrame; i++)
-		{
-			cv::Point2f interPt(i * xIncrement + pt0.x, i * yIncrement + pt0.y);
-			dataOut.push_back(datum(fc0 + i, interPt));
-		}
-
-		std::swap(fc0, fc1);
-		std::swap(pt0, pt1);
+		dataOut[i] = datum(frameIndices[i], cv::Point2d(x2[i], y2[i]));
 	}
 }
+
+//// Fills dataOut with linear interpolation of dataIn's points
+//static void lerp(const dataVec& dataIn, dataVec& dataOut)
+//{
+
+////	dataOut.resize(dataIn.size() * 10);
+
+//	dataVec::const_iterator it = begin(dataIn), nd = end(dataIn);
+
+//	float fc0 = 0, fc1 = 0;
+//	cv::Point2f pt0, pt1;
+//	for (it = begin(dataIn); it != nd; it++)
+//	{
+//		fc1 = std::get<0>(*it);
+//		pt1 = std::get<1>(*it);
+
+//		float nFrame = fc1 - fc0;
+
+//		float xDist = pt1.x - pt0.x;
+//		float yDist = pt1.y - pt0.y;
+
+//		float xIncrement = xDist / nFrame;
+//		float yIncrement = yDist / nFrame;
+
+//		for (size_t i = 0; i < nFrame; i++)
+//		{
+//			cv::Point2f interPt(i * xIncrement + pt0.x, i * yIncrement + pt0.y);
+//			dataOut.push_back(datum(fc0 + i, interPt));
+//		}
+
+//		std::swap(fc0, fc1);
+//		std::swap(pt0, pt1);
+//	}
+//}
 
 int main (int argc, char** argv)
 {
@@ -99,7 +127,7 @@ int main (int argc, char** argv)
 	}
 
 	dataVec lerpdData;
-	lerp(clickData, lerpdData);
+	interpolate(clickData, lerpdData);
 
 	std::for_each
 	(	
@@ -112,6 +140,7 @@ int main (int argc, char** argv)
 			std::cout << d << std::endl;
 		}
 	);
+
 	bool quit = false;
 	while (!quit)
 	{

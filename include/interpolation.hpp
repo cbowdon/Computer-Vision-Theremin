@@ -19,10 +19,10 @@ namespace lk
 				void interpolate2 (Iterator it, Iterator end, Iterator out, size_t nSteps, Function func)
 				{
 					double prev = *it;
-					it++;
-					for (; it != end; it++)
+					++it;
+					for (; it != end; ++it)
 					{
-						for (double i = 0; i < nSteps; i++, out++)
+						for (double i = 0; i < nSteps; i++, ++out)
 						{
 							double mu = i / nSteps;
 							*out = func(prev, *it, mu);
@@ -40,20 +40,20 @@ namespace lk
 					Iterator p1 = (it+1);
 					Iterator p2 = (it+2);
 
-					for (double i = 0; i < nSteps; i++, out++)
+					for (double i = 0; i < nSteps; i++, ++out)
 					{
 						double mu = i / nSteps;
 						*out = func(*pm1, *p0, *p1, *p2, mu);
 					}
 
-					p0++;
-					p1++;
-					p2++;
+					++p0;
+					++p1;
+					++p2;
 
 					// middle points
-					for (; p2 != end; pm1++, p0++, p1++, p2++)
+					for (; p2 != end; ++pm1, ++p0, ++p1, ++p2)
 					{
-						for (double i = 0; i < nSteps; i++, out++)
+						for (double i = 0; i < nSteps; i++, ++out)
 						{
 							double mu = i / nSteps;
 							*out = func(*pm1, *p0, *p1, *p2, mu);
@@ -63,7 +63,7 @@ namespace lk
 					// edge case: last point
 					p2--;
 
-					for (double i = 0; i < nSteps; i++, out++)
+					for (double i = 0; i < nSteps; i++, ++out)
 					{
 						double mu = i / nSteps;
 						*out = func(*pm1, *p0, *p1, *p2, mu);
@@ -151,10 +151,10 @@ namespace lk
 				//				 s[0] = x[0]
 				*it = value0;
 				T prev = *it;
-				it++;
+				++it;
 
 				//				 s[i] = a * x[i] + (1-a) * s[i-1]
-				for (double i = 1; i < nSteps; i++, it++)
+				for (double i = 1; i < nSteps; i++, ++it)
 				{
 					*it = (value1 * filterFactor) + (prev * (1.0 - filterFactor));
 					prev = *it;
@@ -165,58 +165,15 @@ namespace lk
 			void lowpass (Iterator it, Iterator end, Iterator out, double filterFactor)
 			{
 				*out = *it;
-				out++;
-				it++;
+				++out;
+				++it;
 
 				double prev = *out;
-				for (; it != end; it++, out++)
+				for (; it != end; ++it, ++out)
 				{
 					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
 					prev = *out;
 				}
-			}
-
-		template <class Iterator>
-			void lowpass (Iterator it, Iterator end, Iterator out, size_t nSteps, double filterFactor)
-			{
-				*out = *it;
-				out++;
-				it++;
-
-				for (; it != end; it++)
-				{
-					for (size_t i = 0; i < nSteps; i++)
-					{
-						*out = *it;						
-						out++;
-					}
-				}
-				//				size_t j = 0;
-				//				*out = *it;
-				//				out++;
-				//				it++;
-				//				std::cout << "s[" << j << "] = " << *out << std::endl;
-				//				j++;
-				//				double prev = *out;
-
-				//				for (double i = 0; i < nSteps; i++, out++)
-				//				{
-				//					*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-				//					prev = *out;
-				//					std::cout << "s[" << j << "] = " << *out << std::endl;
-				//					j++;
-				//				}
-
-				//				for (; (it+2) != end; it++)
-				//				{
-				//					for (double i = 0; i < nSteps; i++, out++)
-				//					{
-				//						*out = (*it * filterFactor) + (prev * (1.0 - filterFactor));
-				//						prev = *out;
-				//						std::cout << "s[" << j << "] = " << *out << std::endl;
-				//						j++;
-				//					}
-				//				}
 			}
 	}
 }

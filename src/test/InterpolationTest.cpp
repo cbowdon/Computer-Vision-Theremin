@@ -73,10 +73,13 @@ const bool test::InterpolationTest::lowpass () const
 	success &= outputVec[8] == 1.9921875;
 	success &= outputVec[9] == 1.99609375;
 
-	std::vector<double> x { 0.0, 2.0, 2.0 };
-	std::vector<double> y((x.size() -1) * nSteps);
+	std::vector<double> x(nSteps);
+	// fill vector like { 0.0, 2.0, 2.0, 2.0, 2.0...
+	std::fill(begin(x), end(x), 2.0);
+	x[0] = 0.0;
+	std::vector<double> y(x.size());
 
-	lk::interpolation::lowpass(begin(x), end(x), begin(y), nSteps, filterFactor);
+	lk::interpolation::lowpass(begin(x), end(x), begin(y), filterFactor);
 
 	success &= y[0] == 0.0;
 	success &= y[1] == 1.0;
