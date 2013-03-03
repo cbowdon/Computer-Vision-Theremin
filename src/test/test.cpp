@@ -5,6 +5,7 @@
 #include "NoteGeneratorTest.hpp"
 #include "NoteTest.hpp"
 #include "InterpolationTest.hpp"
+#include "TrackFileTest.hpp"
 
 using namespace test;
 
@@ -16,6 +17,7 @@ int main (int argc, char** argv)
 	tests.push_back(std::shared_ptr<TestBase>(new NoteGeneratorTest));
 	tests.push_back(std::shared_ptr<TestBase>(new NoteTest));
 	tests.push_back(std::shared_ptr<TestBase>(new InterpolationTest));
+	tests.push_back(std::shared_ptr<TestBase>(new TrackFileTest));
 
 	for (auto& test : tests)
 	{

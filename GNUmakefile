@@ -1,47 +1,60 @@
 # Run from binaries directory
 
+CXX = c++
+CXXFLAGS = -std=c++11 -stdlib=libc++ -Wall -D__MACOSX_CORE__
+LDFLAGS = -I include -I include/test
+
+OPENCV_LIBS = -L /usr/local/lib/ -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc
+BOOST_LIBS = -L /usr/local/lib/ -lboost_timer -lboost_system
+STK_LIBS = -L /usr/local/lib -lstk
+
+RM = rm -f
+MV = mv a.out
+
 entry_point = main.o
 main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o TrackFile.o
 main_executable = lk
 
 test_entry_point = test.cpp
-test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o
+test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o TrackFileTest.o
 test_executable = lk.test
 
-opencv_libs = -L /usr/local/lib/ -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc
-boost_libs = -L /usr/local/lib/ -lboost_timer -lboost_system
-stk_libs = -L /usr/local/lib -lstk
-defs = -D__MACOSX_CORE__
-
-cpp = c++ -std=c++11 -stdlib=libc++
-cpp_flags = -I include -I include/test -Wall 
+sample_entry_point = sample.cpp
+sample_assemblies = TrackFile.o VideoProvider.o
+sample_executable = lk.sample
 
 vpath %.hpp include include/test
 vpath %.cpp src src/test
 
-%.o: %.cpp interpolation.hpp
-	$(cpp) -c $< $(cpp_flags) $(defs) -o $@
+%.o: %.cpp %.hpp
+	$(CXX) -c $< $(CXXFLAGS) $(LDFLAGS) -o $@
 
 all: $(entry_point) $(main_assemblies)
 	ctags -R .
-	$(cpp) $(cpp_flags) $^ -o $(main_executable) $(opencv_libs) $(boost_libs) $(stk_libs)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^
+	$(MV) $(main_executable)
 
 run: all
 	./$(main_executable)
 
-tests: $(test_entry_point) $(test_assemblies) $(main_assemblies)
+tests: $(test_entry_point) $(test_assemblies) $(main_assemblies) interpolation.hpp
 	ctags -R .
-	$(cpp) $(cpp_flags) $^ -o $(test_executable) $(opencv_libs) $(stk_libs)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(STK_LIBS) $^
+	$(MV) $(test_executable)
 
 run_tests: tests
 	./$(test_executable)
 
-sample: sample.cpp $(main_assemblies)
+sample: $(sample_entry_point) $(sample_assemblies) interpolation.hpp
 	ctags -R .
-	$(cpp) $(cpp_flags) $^ -o sample $(opencv_libs) $(boost_libs) $(stk_libs)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^
+	$(MV) $(sample_executable)
 
 clean:
-	rm -f $(main_executable)
-	rm -f $(main_assemblies)
-	rm -f $(test_executable)
-	rm -f $(test_assemblies)
+	$(RM) $(main_executable)
+	$(RM) $(main_assemblies)
+	$(RM) $(test_executable)
+	$(RM) $(test_assemblies)
+	$(RM) $(sample_assemblies)
+	$(RM) $(sample_executable)
+	$(RM) a.out
