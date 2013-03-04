@@ -29,6 +29,7 @@ vpath %.cpp src src/test
 %.o: %.cpp %.hpp
 	$(CXX) -c $< $(CXXFLAGS) $(LDFLAGS) -o $@
 
+
 all: $(entry_point) $(main_assemblies)
 	ctags -R .
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^

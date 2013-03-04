@@ -17,10 +17,15 @@ bool test::TrackFileTest::run ()
 const bool test::TrackFileTest::extractDatum () const
 {
 	const std::string goodString = "1, [123.456, 678.90]";
-	lk::TrackFile trackFile("resources/test.txt");
+	lk::TrackFile trackFile("resources/sample_file_test.txt"); // file not used
 	lk::trackDatum datum(trackFile.extractDatum(goodString));
 
 	bool success = datum == lk::trackDatum(1, cv::Point2d(123.456, 678.90));
+
+	const std::string goodString2 = "1, [123, 678]";
+	lk::trackDatum datum2(trackFile.extractDatum(goodString2));
+
+	success &= datum2 == lk::trackDatum(1, cv::Point2d(123.0, 678.0));
 
 	bool didThrow = false;
 	try
@@ -40,21 +45,23 @@ const bool test::TrackFileTest::extractDatum () const
 
 const bool test::TrackFileTest::loadData () const
 {
+	const std::string filename = "resources/sample_file_test.txt";
+
 	std::vector<lk::trackDatum> inData(20);
 	std::fill(begin(inData), end(inData), lk::trackDatum(1, cv::Point2d(1.0, 1.0)));
 
-	lk::TrackFile trackFile("resources/test.txt");
-	trackFile.save(inData);	
+	lk::TrackFile writeFile(filename);
+	writeFile.save(inData);	
+
+	lk::TrackFile readFile(filename);
 
 	std::vector<lk::trackDatum> outData;
-	trackFile.load(outData);
+	readFile.load(outData);
 
 	bool success = outData.size() == inData.size();
 
 	for (size_t i = 0; i < outData.size(); i++)
 	{
-		std::cout << std::get<0>(inData[i]) << ", " << std::get<0>(outData[i]) << std::endl;
-		std::cout << std::get<1>(inData[i]) << ", " << std::get<1>(outData[i]) << std::endl;
 		success &= inData[i] == outData[i];
 	}
 
