@@ -43,8 +43,8 @@ static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 	std::iota(begin(frameIndices), end(frameIndices), 0);
 
 	std::vector<double> x2(interpolatedSize), y2(interpolatedSize);
-	lk::interpolation::cubic(begin(x), end(x), begin(x2), nSteps);
-	lk::interpolation::cubic(begin(y), end(y), begin(y2), nSteps);
+	interpolation::cubic(begin(x), end(x), begin(x2), nSteps);
+	interpolation::cubic(begin(y), end(y), begin(y2), nSteps);
 
 	for (size_t i = 0; i < interpolatedSize; i++)
 	{

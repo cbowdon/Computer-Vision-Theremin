@@ -1,10 +1,11 @@
 #include <algorithm>
 #include <iostream>
+#include "InterpolationTest.hpp"
+#include "StatisticsTest.hpp"
 #include "PointAccountantTest.hpp"
 #include "LinearConverterTest.hpp"
 #include "NoteGeneratorTest.hpp"
 #include "NoteTest.hpp"
-#include "InterpolationTest.hpp"
 #include "TrackFileTest.hpp"
 
 using namespace test;
@@ -12,11 +13,12 @@ using namespace test;
 int main (int argc, char** argv)
 {
 	std::vector< std::shared_ptr<TestBase> > tests;
+	tests.push_back(std::shared_ptr<TestBase>(new InterpolationTest));
+	tests.push_back(std::shared_ptr<TestBase>(new StatisticsTest));
 	tests.push_back(std::shared_ptr<TestBase>(new PointAccountantTest));
 	tests.push_back(std::shared_ptr<TestBase>(new LinearConverterTest));
 	tests.push_back(std::shared_ptr<TestBase>(new NoteGeneratorTest));
 	tests.push_back(std::shared_ptr<TestBase>(new NoteTest));
-	tests.push_back(std::shared_ptr<TestBase>(new InterpolationTest));
 	tests.push_back(std::shared_ptr<TestBase>(new TrackFileTest));
 
 	for (auto& test : tests)

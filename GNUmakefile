@@ -16,7 +16,7 @@ main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o Sou
 main_executable = lk
 
 test_entry_point = test.cpp
-test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o TrackFileTest.o
+test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o TrackFileTest.o StatisticsTest.o
 test_executable = lk.test
 
 sample_entry_point = sample.cpp
@@ -38,7 +38,7 @@ all: $(entry_point) $(main_assemblies)
 run: all
 	./$(main_executable)
 
-tests: $(test_entry_point) $(test_assemblies) $(main_assemblies) interpolation.hpp
+tests: $(test_entry_point) $(test_assemblies) $(main_assemblies) interpolation.hpp statistics.hpp
 	ctags -R .
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(STK_LIBS) $^
 	$(MV) $(test_executable)
