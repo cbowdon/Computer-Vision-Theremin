@@ -32,16 +32,13 @@ const bool test::StatisticsTest::average () const
 
 const bool test::StatisticsTest::chiSquared () const
 {
-//	const std::vector<double> a { 0.1, 0.2, 0.3, 0.4, -0.5, 0.0, 0.2 };
-//	const std::vector<double> b { 0.15, 0.23, 0.32, 0.39, -0.44, -0.03, 0.14 };
 	const std::vector<double> a { 660.0, 220.0 };
 	const std::vector<double> b { 639.0, 241.0 };
 
 	const double chiSquared = statistics::chiSquared(begin(a), end(a), begin(b));
 
-	std::cout << chiSquared << std::endl;
-
-	bool success = std::abs(chiSquared - 2.668) < 1e-9;
+	// answer is 147 / 55
+	bool success = std::abs(chiSquared * 55.0 - 147.0) < 1e-9;
 
 	return success;
 }
