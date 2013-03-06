@@ -20,13 +20,23 @@ namespace statistics
 					sum += selector(*it);
 					++count;
 				}
-				return count == 0 ? 0 : sum / count;
+				return count == 0 ? sum : sum / count;
 			}
 
-		template <class Container, class Function>
-			const double chiSquared (const Container& expected, const Container& actual, const Function selector)
+		template <class Iterator, class Function>
+			const typename Iterator::value_type chiSquared (Iterator itE, Iterator endE, Iterator itO, const Function selector)
 			{
-				return 0;
+				typedef typename Iterator::value_type valueType;
+
+				valueType sum = valueType();
+
+				for (; itE != endE; ++itE, itO++)
+				{
+					valueType e = selector(*itE);
+					valueType d = selector(*itO) - e;
+					sum += d * d / e;
+				}
+				return sum;
 			}
 
 		template <class Iterator, class Function>
@@ -45,7 +55,7 @@ namespace statistics
 					sum += d * d;
 					++count;
 				}
-				return count == 0 ? 0 : sum / count;
+				return count == 0 ? sum : sum / count;
 			}
 
 	}
@@ -62,10 +72,10 @@ namespace statistics
 			return details::variance(it, end, [](typename Iterator::value_type v) { return v; });
 		}
 
-	template <class Container>
-		const double chiSquared (const Container& expected, const Container& actual)
+	template <class Iterator>
+		const typename Iterator::value_type chiSquared (Iterator itE, Iterator endE, Iterator itO)
 		{
-			return 0;
+			return details::chiSquared(itE, endE, itO, [](typename Iterator::value_type v) { return v; });
 		}
 
 
