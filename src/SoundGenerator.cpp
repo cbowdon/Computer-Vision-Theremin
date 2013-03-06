@@ -14,6 +14,18 @@ lk::SoundGenerator::SoundGenerator () :
 	play.store(false);
 }
 
+lk::SoundGenerator::~SoundGenerator ()
+{
+	try
+	{
+		// must un-pause to destroy
+		realTimeOutput->start();
+	}
+	catch (...)
+	{
+	}
+}
+
 const float lk::SoundGenerator::getFrequency () const
 {
 	return frequency.load();
@@ -21,6 +33,7 @@ const float lk::SoundGenerator::getFrequency () const
 
 void lk::SoundGenerator::setFrequency (float value)
 {
+	value = std::max(1.0f, value);
 	std::lock_guard<std::mutex> lock(mutex);
 	frequency.store(value);
 	sineWave.setFrequency(value);
@@ -41,7 +54,7 @@ void lk::SoundGenerator::start ()
 	play.store(true);
 	try
 	{
-		realTimeOutput = std::shared_ptr<stk::RtWvOut>(new stk::RtWvOut(1));
+		realTimeOutput = std::unique_ptr<stk::RtWvOut>(new stk::RtWvOut(1));
 
 		while (play.load())
 		{
@@ -50,6 +63,8 @@ void lk::SoundGenerator::start ()
 				realTimeOutput->tick(sineWave.tick());
 			}
 		}
+
+		realTimeOutput->stop();
 	}
 	catch (stk::StkError&)
 	{

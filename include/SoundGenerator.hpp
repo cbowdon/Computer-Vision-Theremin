@@ -1,6 +1,7 @@
 #ifndef SOUNDGENERATOR_H
 #define SOUNDGENERATOR_H
 
+#include <memory>
 #include <iostream>
 #include <thread>
 #include <atomic>
@@ -14,6 +15,7 @@ namespace lk
 	{
 		public:
 			SoundGenerator ();
+			~SoundGenerator ();
 			void start ();
 			const float getFrequency () const;
 			void setFrequency (float value);
@@ -24,7 +26,7 @@ namespace lk
 			std::atomic<bool> play;
 			std::mutex mutex;
 			stk::SineWave sineWave;
-			std::shared_ptr<stk::RtWvOut> realTimeOutput;
+			std::unique_ptr<stk::RtWvOut> realTimeOutput;
 	};
 }
 

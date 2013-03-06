@@ -29,6 +29,7 @@ static void mouseClick (int event, int x, int y, int, void*)
 	}
 }
 
+// Interpolates between the click points
 static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 {
 	const size_t nSteps = 10;
@@ -56,7 +57,7 @@ int main (int argc, char** argv)
 {
 	std::string sampleFile = "resources/test.mov";
 	lk::VideoProvider vid(sampleFile);
-	lk::TrackFile trackFile("resources/test.txt");
+	lk::TrackFile trackFile("resources/human.txt");
 
 	cv::namedWindow(sampleFile, 0);
 	cv::setMouseCallback(sampleFile, mouseClick, 0);

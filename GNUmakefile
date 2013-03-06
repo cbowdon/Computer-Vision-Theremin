@@ -11,24 +11,23 @@ STK_LIBS = -L /usr/local/lib -lstk
 RM = rm -f
 MV = mv a.out
 
-entry_point = main.o
+entry_point = main.cpp
 main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o TrackFile.o
-main_executable = lk
+main_executable = main.lk
 
 test_entry_point = test.cpp
 test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o TrackFileTest.o StatisticsTest.o
-test_executable = lk.test
+test_executable = test.lk
 
 sample_entry_point = sample.cpp
 sample_assemblies = TrackFile.o VideoProvider.o
-sample_executable = lk.sample
+sample_executable = sample.lk
 
 vpath %.hpp include include/test
 vpath %.cpp src src/test
 
 %.o: %.cpp %.hpp
 	$(CXX) -c $< $(CXXFLAGS) $(LDFLAGS) -o $@
-
 
 all: $(entry_point) $(main_assemblies)
 	ctags -R .

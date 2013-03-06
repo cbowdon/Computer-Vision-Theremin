@@ -7,11 +7,9 @@ namespace statistics
 {
 	// statistics functions for STL iterators
 	template <class Iterator, class Function>
-		const typename Iterator::value_type average (Iterator it, Iterator end, const Function selector)
+		const double average (Iterator it, Iterator end, const Function selector)
 		{
-			typedef typename Iterator::value_type valueType;
-
-			valueType sum = valueType();
+			double sum = 0;
 
 			size_t count = 0;
 			for (; it != end; ++it)
@@ -23,34 +21,30 @@ namespace statistics
 		}
 
 	template <class Iterator, class Function>
-		const typename Iterator::value_type chiSquared (Iterator itE, Iterator endE, Iterator itO, const Function selector)
+		const double chiSquared (Iterator itE, Iterator endE, Iterator itO, const Function selector)
 		{
-			typedef typename Iterator::value_type valueType;
-
-			valueType sum = valueType();
+			double sum = 0;
 
 			for (; itE != endE; ++itE, itO++)
 			{
-				valueType e = selector(*itE);
-				valueType d = selector(*itO) - e;
+				double e = selector(*itE);
+				double d = selector(*itO) - e;
 				sum += d * d / e;
 			}
 			return sum;
 		}
 
 	template <class Iterator, class Function>
-		const typename Iterator::value_type variance (Iterator it, Iterator end, const Function selector)
+		const double variance (Iterator it, Iterator end, const Function selector)
 		{
-			typedef typename Iterator::value_type valueType;
-
-			valueType avg = average(it, end, selector);
+			double avg = average(it, end, selector);
 
 			size_t count = 0;
-			valueType sum = valueType();
+			double sum = 0;
 
 			for (; it != end; ++it)
 			{
-				valueType d = selector(*it) - avg;
+				double d = selector(*it) - avg;
 				sum += d * d;
 				++count;
 			}
@@ -60,21 +54,21 @@ namespace statistics
 
 	// default selectors are x -> x
 	template <class Iterator>
-		const typename Iterator::value_type average (Iterator it, Iterator end)
+		const double average (Iterator it, Iterator end)
 		{
-			return average(it, end, [](typename Iterator::value_type val) { return val; });
+			return average(it, end, [](double val) { return val; });
 		}
 
 	template <class Iterator>
-		const typename Iterator::value_type variance (Iterator it, Iterator end)
+		const double variance (Iterator it, Iterator end)
 		{
-			return variance(it, end, [](typename Iterator::value_type v) { return v; });
+			return variance(it, end, [](double v) { return v; });
 		}
 
 	template <class Iterator>
-		const typename Iterator::value_type chiSquared (Iterator itE, Iterator endE, Iterator itO)
+		const double chiSquared (Iterator itE, Iterator endE, Iterator itO)
 		{
-			return chiSquared(itE, endE, itO, [](typename Iterator::value_type v) { return v; });
+			return chiSquared(itE, endE, itO, [](double v) { return v; });
 		}
 
 

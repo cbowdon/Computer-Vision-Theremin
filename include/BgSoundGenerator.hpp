@@ -10,6 +10,7 @@ namespace lk
 	{
 		public:
 			BgSoundGenerator ();
+			~BgSoundGenerator ();
 			void start ();
 			void stop ();
 			void setFrequency (float value);
