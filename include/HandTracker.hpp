@@ -16,7 +16,7 @@ namespace lk
 		public:
 
 			HandTracker (const cv::Size& frameSize);
-			void update (cv::Mat& frame);
+			void update (cv::Mat& frame, bool shouldSharpen=false);
 			const cv::Point& getPos () const;
 			const std::string report () const;
 

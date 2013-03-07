@@ -12,7 +12,7 @@ RM = rm -f
 MV = mv a.out
 
 entry_point = main.cpp
-main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o Profiler.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o TrackFile.o
+main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o
 main_executable = main.lk
 
 test_entry_point = test.cpp
@@ -22,6 +22,10 @@ test_executable = test.lk
 sample_entry_point = sample.cpp
 sample_assemblies = TrackFile.o VideoProvider.o
 sample_executable = sample.lk
+
+analysis_entry_point = analysis.cpp
+analysis_assemblies = Profiler.o TrackFile.o
+analysis_executable = analysis.lk
 
 vpath %.hpp include include/test
 vpath %.cpp src src/test
@@ -50,6 +54,12 @@ sample: $(sample_entry_point) $(sample_assemblies) interpolation.hpp
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^
 	$(MV) $(sample_executable)
 
+analysis: $(analysis_entry_point) $(analysis_assemblies) $(main_assemblies)
+	ctags -R .
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^
+	$(MV) $(analysis_executable)
+
+
 clean:
 	$(RM) $(main_executable)
 	$(RM) $(main_assemblies)
@@ -57,4 +67,6 @@ clean:
 	$(RM) $(test_assemblies)
 	$(RM) $(sample_assemblies)
 	$(RM) $(sample_executable)
+	$(RM) $(analysis_assemblies)
+	$(RM) $(analysis_executable)
 	$(RM) a.out

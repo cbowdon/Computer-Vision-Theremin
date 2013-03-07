@@ -55,9 +55,9 @@ static void interpolate (const dataVec& dataIn, dataVec& dataOut)
 
 int main (int argc, char** argv)
 {
-	std::string sampleFile = "resources/test.mov";
+	std::string sampleFile = "resources/test2.mov";
 	lk::VideoProvider vid(sampleFile);
-	lk::TrackFile trackFile("resources/human.txt");
+	lk::TrackFile trackFile("resources/human2.txt");
 
 	cv::namedWindow(sampleFile, 0);
 	cv::setMouseCallback(sampleFile, mouseClick, 0);

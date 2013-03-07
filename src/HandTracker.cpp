@@ -21,16 +21,21 @@ void lk::HandTracker::sharpen (const cv::Mat& in, cv::Mat& out) const
 	cv::addWeighted(in, 1.5, out, -0.5, 0, out);
 }
 
-void lk::HandTracker::update (cv::Mat& frame)
+void lk::HandTracker::update (cv::Mat& frame, bool shouldSharpen)
 {
 	cv::Mat gray, sharp;
 	cv::cvtColor(frame, gray, CV_BGR2GRAY);
 
-	sharpen(gray, sharp);
+	if (shouldSharpen)
+	{
+		cv::Mat temp;
+		sharpen(gray, temp);
+		gray = temp;
+	}
 
 	if (!prevImageLK.data)
 	{
-		sharp.copyTo(prevImageLK);
+		gray.copyTo(prevImageLK);
 	}
 
 	if (data.nextPts.empty())
@@ -40,7 +45,7 @@ void lk::HandTracker::update (cv::Mat& frame)
 
 	if (!data.prevPts.empty() && !data.nextPts.empty())
 	{
-		cv::calcOpticalFlowPyrLK(prevImageLK, sharp, data.prevPts, data.nextPts, data.status, data.error, winSize, 3, termCrit, 0, 0.001);
+		cv::calcOpticalFlowPyrLK(prevImageLK, gray, data.prevPts, data.nextPts, data.status, data.error, winSize, 3, termCrit, 0, 0.001);
 	}
 
 	for (auto& pt : data.prevPts)
@@ -56,7 +61,7 @@ void lk::HandTracker::update (cv::Mat& frame)
 	pa.weedPoints(data);
 
 	std::swap(data.prevPts, data.nextPts);
-	std::swap(prevImageLK, sharp);
+	std::swap(prevImageLK, gray);
 }
 
 const std::string lk::HandTracker::report () const
