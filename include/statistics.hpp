@@ -1,6 +1,8 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
+#include <numeric>
+
 namespace statistics
 {
 	// statistics functions for STL iterators

@@ -19,7 +19,7 @@ void lk::PointAccountant::spawnPoints (std::vector<cv::Point2f>& points)
 	else if (points.size() < idealPoints)
 	{
 		// TODO this loop should be over ordering by most moved
-		int k = 0;
+		size_t k = 0;
 		while (points.size() < idealPoints)
 		{
 			spawnPointStar(points[k], points, 4);
@@ -77,27 +77,6 @@ void lk::PointAccountant::weedPoints (lk::LKData& data, const bool respawn)
 	{
 		spawnPoints(data.nextPts);
 	}
-}
-
-// Deprecated
-const cv::Point2f lk::PointAccountant::getWeightedCenter (const lk::LKData& data) const
-{
-	float weightSum = 0;
-	std::vector<float> weights;
-	cv::Point2f center;
-
-	for (size_t i = 0; i < data.nextPts.size(); i++)
-	{
-		cv::Point2f diff = data.nextPts[i] - data.prevPts[i];
-		weights.push_back(diff.x * diff.x + diff.y * diff.y + 1); // add 1 as a minimum weight
-		weightSum += weights[i];
-		center += weights[i] * data.nextPts[i];
-	}
-
-	center.x /= (weightSum * data.nextPts.size());
-	center.y /= (weightSum * data.nextPts.size());
-
-	return center;
 }
 
 const cv::Point2f lk::PointAccountant::getCenter (const std::vector<cv::Point2f>& points) const
@@ -160,21 +139,19 @@ const lk::LKStats lk::PointAccountant::getDataStats (const lk::LKData& data) con
 	return stats;
 }
 
-void lk::PointAccountant::spawnPointStar (const cv::Point2f& point, std::vector<cv::Point2f>& points, const size_t maxPoints)
+void lk::PointAccountant::spawnPointStar (const cv::Point2f& centerPoint, std::vector<cv::Point2f>& points, const size_t maxPoints)
 {
-	unsigned int k = 0;
 	double starRadius = bounds.height / 50.0;
-	while (k * 4 < maxPoints)
+	for (size_t k = 0; k * 4 < maxPoints; k++)
 	{
-		k++;
-		cv::Point2f eOffset = point + cv::Point2f(k * starRadius, 0);
-		cv::Point2f wOffset = point + cv::Point2f(-starRadius * k, 0);
-		cv::Point2f nOffset = point + cv::Point2f(0, starRadius * k);
-		cv::Point2f sOffset = point + cv::Point2f(0, -starRadius * k);
-		points.push_back(eOffset);
-		points.push_back(wOffset);
-		points.push_back(nOffset);
-		points.push_back(sOffset);
+		// N
+		points.push_back(centerPoint + cv::Point2f(0, starRadius * k));
+		// S
+		points.push_back(centerPoint + cv::Point2f(0, -starRadius * k));
+		// E
+		points.push_back(centerPoint + cv::Point2f(k * starRadius, 0));
+		// W
+		points.push_back(centerPoint + cv::Point2f(-starRadius * k, 0));
 	}
 }
 

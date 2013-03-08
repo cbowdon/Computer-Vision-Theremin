@@ -41,7 +41,7 @@ all: $(entry_point) $(main_assemblies)
 run: all
 	./$(main_executable)
 
-tests: $(test_entry_point) $(test_assemblies) $(main_assemblies) interpolation.hpp statistics.hpp
+tests: $(test_entry_point) $(test_assemblies) $(main_assemblies) $(analysis_assemblies) interpolation.hpp statistics.hpp
 	ctags -R .
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(STK_LIBS) $^
 	$(MV) $(test_executable)

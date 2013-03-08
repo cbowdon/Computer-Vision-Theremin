@@ -72,7 +72,7 @@ int main (int argc, char** argv)
 	std::transform(begin(record), end(record), begin(rec2), [](trackDatum d){
 			double x = std::get<1>(d).x;
 			double y = std::get<1>(d).y;
-			cv::Point2d p2(x - 20, y - 30);
+			cv::Point2d p2(x - 0, y - 0);
 			return trackDatum(std::get<0>(d), p2);
 			});
 

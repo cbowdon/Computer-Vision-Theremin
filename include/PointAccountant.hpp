@@ -19,7 +19,6 @@ namespace lk
 			void weedPoints (lk::LKData& data, const bool respawn=true);
 
 			const cv::Point2f getCenter (const std::vector<cv::Point2f>& points) const;
-			const cv::Point2f getWeightedCenter (const LKData& data) const;
 			const cv::Point2f& getPrevCenter () const;
 
 			const cv::Size& getBounds () const;
