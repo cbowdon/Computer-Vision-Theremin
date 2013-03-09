@@ -15,6 +15,7 @@ using namespace lk;
 
 int main (int argc, char** argv)
 {
+//	const std::string mov = "resources/test.mov";
 	VideoProvider vid;
 	HandTracker tracker(vid.getFrameSize());
 

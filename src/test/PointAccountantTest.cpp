@@ -12,47 +12,47 @@ const std::string test::PointAccountantTest::getName () const
 
 bool test::PointAccountantTest::run ()
 {
-	bool spawnPointsResult = spawnPoints();
-	bool weedPointsResult = weedPoints();
+	bool replenishResult = replenish();
+	bool weedResult = weed();
 	bool getCenterResult = getCenter();
 
-	std::cout << "\t" << "spawnPoints:\t" << spawnPointsResult << std::endl;
-	std::cout << "\t" << "weedPoints:\t" << weedPointsResult << std::endl;
+	std::cout << "\t" << "replenish:\t" << replenishResult << std::endl;
+	std::cout << "\t" << "weed:\t" << weedResult << std::endl;
 	std::cout << "\t" << "getCenter:\t" << getCenterResult << std::endl;
 
-	return spawnPointsResult && weedPointsResult && getCenterResult;
+	return replenishResult && weedResult && getCenterResult;
 }
 
-bool test::PointAccountantTest::spawnPoints ()
+bool test::PointAccountantTest::replenish ()
 {
 	bool success;
 	const size_t idealPoints = 10;
-	lk::PointAccountant pa(cv::Size(100, 100), idealPoints);
+	lk::PointAccountant pa(cv::Size(100, 100), idealPoints, false);
 
 	// Init empty array
 	std::vector<cv::Point2f> points;
 
 	// spawn initial 10 points
-	pa.spawnPoints(points);
+	pa.replenish(points);
 	success = points.size() >= idealPoints;
 	assert(success);
 
 	// immediate re-spawn does nothing
 	const size_t currentPts = points.size();
-	pa.spawnPoints(points);
+	pa.replenish(points);
 	success &= points.size() == currentPts;
 	assert(success);
 
 	// re-spawn after loss rebuilds pointer
 	points.resize(5);
-	pa.spawnPoints(points);
+	pa.replenish(points);
 	success &= points.size() >= idealPoints;
 	assert(success);
 
 	return success;
 }
 
-bool test::PointAccountantTest::weedPoints ()
+bool test::PointAccountantTest::weed ()
 {
 	lk::LKData data;
     
@@ -81,7 +81,7 @@ bool test::PointAccountantTest::weedPoints ()
 	data.error.push_back(100);
 
 	lk::PointAccountant pa(cv::Size(100, 100), 5, true);
-	pa.weedPoints(data, false);
+	pa.weed(data, false);
 
 	bool success;
 	success = data.nextPts.size() == 2;
@@ -93,7 +93,7 @@ bool test::PointAccountantTest::weedPoints ()
 bool test::PointAccountantTest::getCenter ()
 {
 	bool success;
-	lk::PointAccountant pa(cv::Size(100, 100), 5);
+	lk::PointAccountant pa(cv::Size(100, 100), 5, false);
 
 	std::vector<cv::Point2f> points;
 

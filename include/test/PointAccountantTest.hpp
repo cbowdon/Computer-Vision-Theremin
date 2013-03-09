@@ -13,8 +13,8 @@ namespace test
 			bool run () override;
 			const std::string getName () const override;
 		private:
-			bool spawnPoints ();
-			bool weedPoints ();
+			bool replenish ();
+			bool weed ();
 			bool getCenter ();
 	};
 }

@@ -59,6 +59,9 @@ analysis: $(analysis_entry_point) $(analysis_assemblies) $(main_assemblies)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OPENCV_LIBS) $(BOOST_LIBS) $(STK_LIBS) $^
 	$(MV) $(analysis_executable)
 
+run_analysis: analysis
+	./$(analysis_executable)
+
 
 clean:
 	$(RM) $(main_executable)

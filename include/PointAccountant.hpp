@@ -1,34 +1,29 @@
 #ifndef POINTACCOUNTANT_H
 #define POINTACCOUNTANT_H
 
-#include <string>
 #include <ostream>
-#include <iostream>
 #include <algorithm>
 #include <opencv2/core/core.hpp>
 #include "LKData.hpp"
-#include "LKStats.hpp"
 
 namespace lk
 {
 	class PointAccountant
 	{
 		public:
-			PointAccountant (const cv::Size& frameSize, const size_t idealPoints=10, bool applyMinMove=false);
-			void spawnPoints (std::vector<cv::Point2f>& points);
-			void weedPoints (lk::LKData& data, const bool respawn=true);
+			PointAccountant (const cv::Size& frameSize, const size_t idealPoints, bool applyMinMove);
+
+			void spawn (const cv::Point2f& centerPoint, std::vector<cv::Point2f>& points, const size_t ptsToSpawn);
+			void replenish (std::vector<cv::Point2f>& points);
+			void weed (lk::LKData& data, const bool respawn=true);
 
 			const cv::Point2f getCenter (const std::vector<cv::Point2f>& points) const;
-			const cv::Point2f& getPrevCenter () const;
 
 			const cv::Size& getBounds () const;
-			const cv::Point2f getRange (const std::vector<cv::Point2f>& points) const;
-
-			const LKStats getDataStats (const LKData& data) const;
+			const cv::Point2f& getPrevCenter () const;
 
 		private:
 
-			void spawnPointStar(const cv::Point2f& point, std::vector<cv::Point2f>& points, const size_t maxPoints);
 			bool withinBounds (const cv::Point2f& pt);
 
 			const bool applyMinMove;

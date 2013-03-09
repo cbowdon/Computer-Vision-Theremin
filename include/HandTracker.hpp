@@ -18,7 +18,6 @@ namespace lk
 			HandTracker (const cv::Size& frameSize);
 			void update (cv::Mat& frame, bool shouldSharpen=false);
 			const cv::Point& getPos () const;
-			const std::string report () const;
 
 		private:
 
@@ -33,8 +32,6 @@ namespace lk
 			PointAccountant pa;
 			LKData data;
 			cv::Point pos;
-
-			std::vector<LKStats> stats;
 	};
 }
 extern std::ostream& operator<<(std::ostream& ostr, const lk::HandTracker& ht);

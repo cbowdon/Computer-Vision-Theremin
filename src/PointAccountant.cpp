@@ -10,11 +10,41 @@ lk::PointAccountant::PointAccountant (const cv::Size& frameSize, const size_t id
 {
 }
 
-void lk::PointAccountant::spawnPoints (std::vector<cv::Point2f>& points)
+void lk::PointAccountant::spawn (const cv::Point2f& centerPoint, std::vector<cv::Point2f>& points, const size_t ptsToSpawn)
+{
+		const double radiusIncrement = 0.02 * bounds.height;
+
+		size_t l = 0;
+		do
+		{
+			l++;
+
+			// E
+			points.push_back(centerPoint + cv::Point2f(l * radiusIncrement, 0));
+			// W
+			points.push_back(centerPoint + cv::Point2f(-radiusIncrement * l, 0));
+			// N
+			points.push_back(centerPoint + cv::Point2f(0, radiusIncrement * l));
+			// S
+			points.push_back(centerPoint + cv::Point2f(0, -radiusIncrement * l));
+
+			// NE
+			points.push_back(centerPoint + cv::Point2f(2.0 * l * radiusIncrement / 3.0, 2.0 * l * radiusIncrement / 3.0));
+			// NW
+			points.push_back(centerPoint + cv::Point2f(-radiusIncrement * 2.0 * l / 3.0, 2.0 * l * radiusIncrement / 3.0));
+			// SE
+			points.push_back(centerPoint + cv::Point2f(radiusIncrement * 2.0 * l / 3.0, -radiusIncrement * 2.0 * l / 3.0));
+			// SW
+			points.push_back(centerPoint + cv::Point2f(-radiusIncrement * 2.0 * l / 3.0, -radiusIncrement * 2.0 * l / 3.0));
+
+		} while (l * 8 < ptsToSpawn);
+}
+
+void lk::PointAccountant::replenish (std::vector<cv::Point2f>& points)
 {
 	if (points.empty())
 	{
-		spawnPointStar(prevCenter, points, idealPoints);
+		spawn(prevCenter, points, idealPoints);
 	}
 	else if (points.size() < idealPoints)
 	{
@@ -22,24 +52,26 @@ void lk::PointAccountant::spawnPoints (std::vector<cv::Point2f>& points)
 		size_t k = 0;
 		while (points.size() < idealPoints)
 		{
-			spawnPointStar(points[k], points, 4);
+			spawn(points[k], points, 8);
 			k++;
 		}	
 	}
+	// else do nothing
 }
 
-void lk::PointAccountant::weedPoints (lk::LKData& data, const bool respawn)
+void lk::PointAccountant::weed (lk::LKData& data, const bool respawn)
 {
 	// refuse to move if outside bounds
 	cv::Point2f nextCenter = getCenter(data.nextPts);
+
 	if (withinBounds(nextCenter))
 	{
 		prevCenter = nextCenter;
 	}
 
 	// collapse the stack
-	size_t i, k;
-	for(i = k = 0; i < data.nextPts.size(); i++)
+	size_t i, k, oldSize = data.nextPts.size();
+	for(i = k = 0; i < oldSize; i++)
 	{
 
 		// mark status = 0 for non-movers
@@ -75,7 +107,7 @@ void lk::PointAccountant::weedPoints (lk::LKData& data, const bool respawn)
 
 	if (respawn && k < idealPoints)
 	{
-		spawnPoints(data.nextPts);
+		replenish(data.nextPts);
 	}
 }
 
@@ -93,32 +125,6 @@ const cv::Point2f lk::PointAccountant::getCenter (const std::vector<cv::Point2f>
 	return center;
 }
 
-const cv::Point2f lk::PointAccountant::getRange (const std::vector<cv::Point2f>& points) const
-{
-	float maxX = 0, maxY = 0, minX = bounds.width, minY = bounds.height;
-	std::vector<cv::Point2f>::const_iterator it = points.begin();
-	for (; it != points.end(); ++it)
-	{
-		if (it->x > maxX)
-		{
-			maxX = it->x;
-		}
-		if (it->y > maxY)
-		{
-			maxY = it->y;
-		}
-		if (it->x < minX)
-		{
-			minX = it->x;
-		}
-		if (it->y < minY)
-		{
-			minY = it->y;
-		}
-	}
-	return cv::Point2f(maxX - minX, maxY - minY);
-}
-
 const cv::Size& lk::PointAccountant::getBounds () const
 {
 	return bounds;
@@ -127,32 +133,6 @@ const cv::Size& lk::PointAccountant::getBounds () const
 const cv::Point2f& lk::PointAccountant::getPrevCenter () const
 {
 	return prevCenter;
-}
-
-const lk::LKStats lk::PointAccountant::getDataStats (const lk::LKData& data) const
-{
-	lk::LKStats stats;
-	stats.center = getCenter(data.nextPts);
-	stats.range = getRange(data.nextPts);
-//	stats.stDev = getStDev(data.nextPts);
-
-	return stats;
-}
-
-void lk::PointAccountant::spawnPointStar (const cv::Point2f& centerPoint, std::vector<cv::Point2f>& points, const size_t maxPoints)
-{
-	double starRadius = bounds.height / 50.0;
-	for (size_t k = 0; k * 4 < maxPoints; k++)
-	{
-		// N
-		points.push_back(centerPoint + cv::Point2f(0, starRadius * k));
-		// S
-		points.push_back(centerPoint + cv::Point2f(0, -starRadius * k));
-		// E
-		points.push_back(centerPoint + cv::Point2f(k * starRadius, 0));
-		// W
-		points.push_back(centerPoint + cv::Point2f(-starRadius * k, 0));
-	}
 }
 
 bool lk::PointAccountant::withinBounds (const cv::Point2f& pt)
