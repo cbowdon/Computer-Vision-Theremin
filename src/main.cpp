@@ -68,9 +68,6 @@ int main (int argc, char** argv)
 
 		// Draw cursor
 		cv::circle(frame, pos, 16, cv::Scalar(255,0,0), 3, 8);
-		// Draw left hand side cursor
-		cv::circle(frame, cv::Point2f(frame.cols / 20, pos.y), 16, cv::Scalar(100,200,200), 3, 8);
-
 
 		// Display
 		cv::imshow("LK", frame);
