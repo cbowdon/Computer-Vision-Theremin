@@ -1,0 +1,315 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BGSOUNDGENERATOR_H	include/BgSoundGenerator.hpp	2;"	d
+BOOST_LIBS	GNUmakefile	/^BOOST_LIBS = -L \/usr\/local\/lib\/ -lboost_timer -lboost_system$/;"	m
+BgSoundGenerator	include/BgSoundGenerator.hpp	/^	class BgSoundGenerator$/;"	c	namespace:lk
+BgSoundGenerator	src/BgSoundGenerator.cpp	/^lk::BgSoundGenerator::BgSoundGenerator () $/;"	f	class:lk::BgSoundGenerator
+C0	include/Note.hpp	/^		const double C0 = 16.3515978312874;$/;"	m	struct:lk::Note
+C0	include/NoteGenerator.hpp	/^			const double C0 = 16.3515978312874;$/;"	m	class:lk::NoteGenerator
+CXX	GNUmakefile	/^CXX = c++$/;"	m
+CXXFLAGS	GNUmakefile	/^CXXFLAGS = -std=c++11 -stdlib=libc++ -Wall -D__MACOSX_CORE__$/;"	m
+HANDTRACKER_H	include/HandTracker.hpp	2;"	d
+HandTracker	include/HandTracker.hpp	/^	class HandTracker$/;"	c	namespace:lk
+HandTracker	src/HandTracker.cpp	/^lk::HandTracker::HandTracker (const cv::Size& frameSize) :$/;"	f	class:lk::HandTracker
+INTERPOLATIONTEST_H	include/test/InterpolationTest.hpp	2;"	d
+INTERPOLATION_H	include/interpolation.hpp	2;"	d
+InterpolationTest	include/test/InterpolationTest.hpp	/^	class InterpolationTest : public TestBase$/;"	c	namespace:test
+LDFLAGS	GNUmakefile	/^LDFLAGS = -I include -I include\/test$/;"	m
+LINEARCONVERTERTEST_H	include/test/LinearConverterTest.hpp	2;"	d
+LINEARCONVERTER_H	include/LinearConverter.hpp	2;"	d
+LKDATA_H	include/LKData.hpp	2;"	d
+LKData	include/LKData.hpp	/^	struct LKData$/;"	s	namespace:lk
+LKSTATS_H	include/LKStats.hpp	2;"	d
+LKStats	include/LKStats.hpp	/^	struct LKStats$/;"	s	namespace:lk
+LinearConverter	include/LinearConverter.hpp	/^	class LinearConverter$/;"	c	namespace:lk
+LinearConverter	src/LinearConverter.cpp	/^lk::LinearConverter::LinearConverter () :$/;"	f	class:lk::LinearConverter
+LinearConverterTest	include/test/LinearConverterTest.hpp	/^	class LinearConverterTest : public TestBase$/;"	c	namespace:test
+MV	GNUmakefile	/^MV = mv a.out$/;"	m
+NOTECONVERTER_H	include/NoteGenerator.hpp	2;"	d
+NOTEGENERATORTEST_H	include/test/NoteGeneratorTest.hpp	2;"	d
+NOTEPROVIDER_H	include/NoteProvider.hpp	2;"	d
+NOTETEST_H	include/test/NoteTest.hpp	2;"	d
+NOTE_H	include/Note.hpp	2;"	d
+Note	include/Note.hpp	/^	struct Note$/;"	s	namespace:lk
+Note	src/Note.cpp	/^lk::Note::Note (size_t interval) :$/;"	f	class:lk::Note
+NoteGenerator	include/NoteGenerator.hpp	/^	class NoteGenerator$/;"	c	namespace:lk
+NoteGenerator	src/NoteGenerator.cpp	/^lk::NoteGenerator::NoteGenerator (float min, float max) :$/;"	f	class:lk::NoteGenerator
+NoteGeneratorTest	include/test/NoteGeneratorTest.hpp	/^	class NoteGeneratorTest : public TestBase$/;"	c	namespace:test
+NoteProvider	include/NoteProvider.hpp	/^	class NoteProvider$/;"	c	namespace:lk
+NoteProvider	src/NoteProvider.cpp	/^lk::NoteProvider::NoteProvider (float min, float max) :$/;"	f	class:lk::NoteProvider
+NoteTest	include/test/NoteTest.hpp	/^	class NoteTest : public TestBase$/;"	c	namespace:test
+OPENCV_LIBS	GNUmakefile	/^OPENCV_LIBS = -L \/usr\/local\/lib\/ -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc$/;"	m
+PI	include/interpolation.hpp	/^	const double PI = 3.14159265;$/;"	m	namespace:interpolation
+POINTACCOUNTANTTEST_H	include/test/PointAccountantTest.hpp	2;"	d
+POINTACCOUNTANT_H	include/PointAccountant.hpp	2;"	d
+PROFILER_H	include/Profiler.hpp	2;"	d
+PointAccountant	include/PointAccountant.hpp	/^	class PointAccountant$/;"	c	namespace:lk
+PointAccountant	src/PointAccountant.cpp	/^lk::PointAccountant::PointAccountant (const cv::Size& frameSize, const size_t idealPoints, const bool applyMinMove) :$/;"	f	class:lk::PointAccountant
+PointAccountantTest	include/test/PointAccountantTest.hpp	/^	class PointAccountantTest : public TestBase$/;"	c	namespace:test
+Profiler	include/Profiler.hpp	/^	class Profiler$/;"	c	namespace:lk
+Profiler	src/Profiler.cpp	/^lk::Profiler::Profiler () :$/;"	f	class:lk::Profiler
+RM	GNUmakefile	/^RM = rm -f$/;"	m
+SOUNDGENERATOR_H	include/SoundGenerator.hpp	2;"	d
+STATISTICSTEST_H	include/test/StatisticsTest.hpp	2;"	d
+STATISTICS_H	include/statistics.hpp	2;"	d
+STK_LIBS	GNUmakefile	/^STK_LIBS = -L \/usr\/local\/lib -lstk$/;"	m
+SoundGenerator	include/SoundGenerator.hpp	/^	class SoundGenerator$/;"	c	namespace:lk
+SoundGenerator	src/SoundGenerator.cpp	/^lk::SoundGenerator::SoundGenerator () :$/;"	f	class:lk::SoundGenerator
+StatisticsTest	include/test/StatisticsTest.hpp	/^	class StatisticsTest : public TestBase$/;"	c	namespace:test
+TESTBASE_H	include/test/TestBase.hpp	2;"	d
+TRACKFILETEST_H	include/test/TrackFileTest.hpp	2;"	d
+TRACKFILE_H	include/TrackFile.hpp	2;"	d
+TestBase	include/test/TestBase.hpp	/^	class TestBase$/;"	c	namespace:test
+TrackFile	include/TrackFile.hpp	/^	class TrackFile$/;"	c	namespace:lk
+TrackFile	src/TrackFile.cpp	/^lk::TrackFile::TrackFile (const std::string filename) :$/;"	f	class:lk::TrackFile
+TrackFileTest	include/test/TrackFileTest.hpp	/^	class TrackFileTest : public TestBase$/;"	c	namespace:test
+VIDEOPROVIDER_H	include/VideoProvider.hpp	2;"	d
+VideoProvider	include/VideoProvider.hpp	/^	class VideoProvider$/;"	c	namespace:lk
+VideoProvider	src/VideoProvider.cpp	/^lk::VideoProvider::VideoProvider (bool mirror) :$/;"	f	class:lk::VideoProvider
+VideoProvider	src/VideoProvider.cpp	/^lk::VideoProvider::VideoProvider (const std::string videoFile, bool mirror) :$/;"	f	class:lk::VideoProvider
+analysis_assemblies	GNUmakefile	/^analysis_assemblies = Profiler.o TrackFile.o$/;"	m
+analysis_entry_point	GNUmakefile	/^analysis_entry_point = analysis.cpp$/;"	m
+analysis_executable	GNUmakefile	/^analysis_executable = analysis.lk$/;"	m
+applyMinMove	include/PointAccountant.hpp	/^			const bool applyMinMove;$/;"	m	class:lk::PointAccountant
+average	include/statistics.hpp	/^		const double average (Iterator it, Iterator end)$/;"	f	namespace:statistics
+average	include/statistics.hpp	/^		const double average (Iterator it, Iterator end, const Function selector)$/;"	f	namespace:statistics
+average	src/test/StatisticsTest.cpp	/^const bool test::StatisticsTest::average () const$/;"	f	class:test::StatisticsTest
+bounds	include/PointAccountant.hpp	/^			const cv::Size bounds;$/;"	m	class:lk::PointAccountant
+buildMirrorMap	src/VideoProvider.cpp	/^void lk::VideoProvider::buildMirrorMap ()$/;"	f	class:lk::VideoProvider
+calcLine	src/LinearConverter.cpp	/^void lk::LinearConverter::calcLine ()$/;"	f	class:lk::LinearConverter
+cap	include/VideoProvider.hpp	/^			cv::VideoCapture cap;$/;"	m	class:lk::VideoProvider
+center	include/LKStats.hpp	/^		cv::Point2f center;			$/;"	m	struct:lk::LKStats
+chiSquared	include/statistics.hpp	/^		const double chiSquared (Iterator itE, Iterator endE, Iterator itO)$/;"	f	namespace:statistics
+chiSquared	include/statistics.hpp	/^		const double chiSquared (Iterator itE, Iterator endE, Iterator itO, const Function selector)$/;"	f	namespace:statistics
+chiSquared	src/test/StatisticsTest.cpp	/^const bool test::StatisticsTest::chiSquared () const$/;"	f	class:test::StatisticsTest
+clickData	src/sample.cpp	/^static dataVec clickData;$/;"	v	file:
+clocks	include/Profiler.hpp	/^			std::vector<long> clocks;$/;"	m	class:lk::Profiler
+convert	src/NoteGenerator.cpp	/^const float lk::NoteGenerator::convert (float value) const$/;"	f	class:lk::NoteGenerator
+convertXToY	src/LinearConverter.cpp	/^const float lk::LinearConverter::convertXToY (float xValue) const$/;"	f	class:lk::LinearConverter
+convertYToX	src/LinearConverter.cpp	/^const float lk::LinearConverter::convertYToX (float yValue) const$/;"	f	class:lk::LinearConverter
+copy	include/TrackFile.hpp	/^			TrackFile (const TrackFile& copy) = delete;$/;"	m	class:lk::TrackFile
+cosine	include/interpolation.hpp	/^		void cosine (Iterator it, Iterator end, Iterator out, size_t nSteps)$/;"	f	namespace:interpolation
+cosine	src/test/InterpolationTest.cpp	/^const bool test::InterpolationTest::cosine () const$/;"	f	class:test::InterpolationTest
+cosineStep	include/interpolation.hpp	/^			T cosineStep (T y0, T y1, T mu)$/;"	f	namespace:interpolation::details
+cpuClocks	include/Profiler.hpp	/^			std::vector<long> cpuClocks;$/;"	m	class:lk::Profiler
+create	src/test/NoteTest.cpp	/^const bool test::NoteTest::create () const$/;"	f	class:test::NoteTest
+crossOriginCalcs	src/test/LinearConverterTest.cpp	/^const bool test::LinearConverterTest::crossOriginCalcs () const$/;"	f	class:test::LinearConverterTest
+cubic	include/interpolation.hpp	/^		void cubic (Iterator it, Iterator end, Iterator out, size_t nSteps)$/;"	f	namespace:interpolation
+cubicStep	include/interpolation.hpp	/^			T cubicStep (T y0, T y1, T y2, T y3, T mu)$/;"	f	namespace:interpolation::details
+data	include/HandTracker.hpp	/^			LKData data;$/;"	m	class:lk::HandTracker
+dataVec	src/sample.cpp	/^typedef std::vector<lk::trackDatum> dataVec;$/;"	t	file:
+details	include/interpolation.hpp	/^	namespace details$/;"	n	namespace:interpolation
+distThreshold	include/PointAccountant.hpp	/^			const float distThreshold;$/;"	m	class:lk::PointAccountant
+edgeCaseCalcs	src/test/LinearConverterTest.cpp	/^const bool test::LinearConverterTest::edgeCaseCalcs () const$/;"	f	class:test::LinearConverterTest
+entry_point	GNUmakefile	/^entry_point = main.cpp$/;"	m
+error	include/LKData.hpp	/^		std::vector<float> error;$/;"	m	struct:lk::LKData
+errorThreshold	include/PointAccountant.hpp	/^			const float errorThreshold;$/;"	m	class:lk::PointAccountant
+extractDatum	src/TrackFile.cpp	/^const lk::trackDatum lk::TrackFile::extractDatum (const std::string str)$/;"	f	class:lk::TrackFile
+extractDatum	src/test/TrackFileTest.cpp	/^const bool test::TrackFileTest::extractDatum () const$/;"	f	class:test::TrackFileTest
+file	include/TrackFile.hpp	/^			std::fstream file;$/;"	m	class:lk::TrackFile
+filename	include/TrackFile.hpp	/^			const std::string filename;$/;"	m	class:lk::TrackFile
+frameCount	src/sample.cpp	/^static size_t frameCount = 0;$/;"	v	file:
+frameSize	include/HandTracker.hpp	/^			const cv::Size frameSize;$/;"	m	class:lk::HandTracker
+frameSize	include/VideoProvider.hpp	/^			cv::Size frameSize;$/;"	m	class:lk::VideoProvider
+frequency	include/Note.hpp	/^		const float frequency;$/;"	m	struct:lk::Note
+frequency	include/SoundGenerator.hpp	/^			std::atomic<float> frequency;$/;"	m	class:lk::SoundGenerator
+getBounds	src/PointAccountant.cpp	/^const cv::Size& lk::PointAccountant::getBounds () const$/;"	f	class:lk::PointAccountant
+getCenter	src/PointAccountant.cpp	/^const cv::Point2f lk::PointAccountant::getCenter (const std::vector<cv::Point2f>& points) const$/;"	f	class:lk::PointAccountant
+getCenter	src/test/PointAccountantTest.cpp	/^bool test::PointAccountantTest::getCenter ()$/;"	f	class:test::PointAccountantTest
+getElapsedSeconds	src/Profiler.cpp	/^const double lk::Profiler::getElapsedSeconds (size_t n) const$/;"	f	class:lk::Profiler
+getElapsedTicks	src/Profiler.cpp	/^const long lk::Profiler::getElapsedTicks (size_t n) const$/;"	f	class:lk::Profiler
+getFrame	src/VideoProvider.cpp	/^cv::Mat lk::VideoProvider::getFrame ()$/;"	f	class:lk::VideoProvider
+getFrameSize	src/VideoProvider.cpp	/^const cv::Size& lk::VideoProvider::getFrameSize () const$/;"	f	class:lk::VideoProvider
+getFrequency	src/SoundGenerator.cpp	/^const float lk::SoundGenerator::getFrequency () const$/;"	f	class:lk::SoundGenerator
+getFrequencyForInterval	src/Note.cpp	/^const float lk::Note::getFrequencyForInterval (size_t interval) const$/;"	f	class:lk::Note
+getFrequencyForInterval	src/NoteGenerator.cpp	/^const float lk::NoteGenerator::getFrequencyForInterval (float value) const$/;"	f	class:lk::NoteGenerator
+getName	src/test/InterpolationTest.cpp	/^const std::string test::InterpolationTest::getName () const$/;"	f	class:test::InterpolationTest
+getName	src/test/LinearConverterTest.cpp	/^const std::string test::LinearConverterTest::getName () const$/;"	f	class:test::LinearConverterTest
+getName	src/test/NoteGeneratorTest.cpp	/^const std::string test::NoteGeneratorTest::getName () const$/;"	f	class:test::NoteGeneratorTest
+getName	src/test/NoteTest.cpp	/^const std::string test::NoteTest::getName () const$/;"	f	class:test::NoteTest
+getName	src/test/PointAccountantTest.cpp	/^const std::string test::PointAccountantTest::getName () const$/;"	f	class:test::PointAccountantTest
+getName	src/test/StatisticsTest.cpp	/^const std::string test::StatisticsTest::getName () const$/;"	f	class:test::StatisticsTest
+getName	src/test/TrackFileTest.cpp	/^const std::string test::TrackFileTest::getName () const$/;"	f	class:test::TrackFileTest
+getNameForInterval	src/Note.cpp	/^const std::string lk::Note::getNameForInterval (size_t interval) const$/;"	f	class:lk::Note
+getNameForInterval	src/NoteGenerator.cpp	/^const std::string lk::NoteGenerator::getNameForInterval (size_t interval) const$/;"	f	class:lk::NoteGenerator
+getNameForInterval	src/test/NoteGeneratorTest.cpp	/^const bool test::NoteGeneratorTest::getNameForInterval () const$/;"	f	class:test::NoteGeneratorTest
+getNote	src/NoteProvider.cpp	/^const lk::Note& lk::NoteProvider::getNote (float value) const$/;"	f	class:lk::NoteProvider
+getNoteLocations	src/NoteGenerator.cpp	/^const std::vector<float>& lk::NoteGenerator::getNoteLocations ()$/;"	f	class:lk::NoteGenerator
+getNoteLocations	src/NoteProvider.cpp	/^const std::vector<float>& lk::NoteProvider::getNoteLocations ()$/;"	f	class:lk::NoteProvider
+getPlay	src/SoundGenerator.cpp	/^const bool lk::SoundGenerator::getPlay () const$/;"	f	class:lk::SoundGenerator
+getPos	src/HandTracker.cpp	/^const cv::Point& lk::HandTracker::getPos () const$/;"	f	class:lk::HandTracker
+getPrevCenter	src/PointAccountant.cpp	/^const cv::Point2f& lk::PointAccountant::getPrevCenter () const$/;"	f	class:lk::PointAccountant
+gradient	include/LinearConverter.hpp	/^			float gradient, intercept;$/;"	m	class:lk::LinearConverter
+idealPoints	include/PointAccountant.hpp	/^			const size_t idealPoints;$/;"	m	class:lk::PointAccountant
+intercept	include/LinearConverter.hpp	/^			float gradient, intercept;$/;"	m	class:lk::LinearConverter
+interpolate	src/sample.cpp	/^static void interpolate (const dataVec& dataIn, dataVec& dataOut)$/;"	f	file:
+interpolate2	include/interpolation.hpp	/^			void interpolate2 (Iterator it, Iterator end, Iterator out, size_t nSteps, Function func)$/;"	f	namespace:interpolation::details
+interpolate4	include/interpolation.hpp	/^			void interpolate4 (Iterator it, Iterator end, Iterator out, size_t nSteps, Function func)$/;"	f	namespace:interpolation::details
+interpolation	include/interpolation.hpp	/^namespace interpolation$/;"	n
+interval	include/Note.hpp	/^		const size_t interval;$/;"	m	struct:lk::Note
+isOpen	src/VideoProvider.cpp	/^const bool lk::VideoProvider::isOpen () const$/;"	f	class:lk::VideoProvider
+lc	include/LinearConverter.hpp	/^			LinearConverter operator=(LinearConverter& lc) = delete;$/;"	m	class:lk::LinearConverter
+lc	include/LinearConverter.hpp	/^			LinearConverter(LinearConverter& lc) = delete;$/;"	m	class:lk::LinearConverter
+lc	include/NoteGenerator.hpp	/^			LinearConverter lc;$/;"	m	class:lk::NoteGenerator
+lc	include/NoteProvider.hpp	/^			lk::LinearConverter lc;$/;"	m	class:lk::NoteProvider
+linear	include/interpolation.hpp	/^		void linear (Iterator it, Iterator end, Iterator out, size_t nSteps)$/;"	f	namespace:interpolation
+linear	src/test/InterpolationTest.cpp	/^const bool test::InterpolationTest::linear () const$/;"	f	class:test::InterpolationTest
+linearStep	include/interpolation.hpp	/^			T linearStep (T y0, T y1, T mu)$/;"	f	namespace:interpolation::details
+lk	include/BgSoundGenerator.hpp	/^namespace lk$/;"	n
+lk	include/HandTracker.hpp	/^namespace lk$/;"	n
+lk	include/LKData.hpp	/^namespace lk$/;"	n
+lk	include/LKStats.hpp	/^namespace lk$/;"	n
+lk	include/LinearConverter.hpp	/^namespace lk$/;"	n
+lk	include/Note.hpp	/^namespace lk$/;"	n
+lk	include/NoteGenerator.hpp	/^namespace lk $/;"	n
+lk	include/NoteProvider.hpp	/^namespace lk$/;"	n
+lk	include/PointAccountant.hpp	/^namespace lk$/;"	n
+lk	include/Profiler.hpp	/^namespace lk$/;"	n
+lk	include/SoundGenerator.hpp	/^namespace lk$/;"	n
+lk	include/TrackFile.hpp	/^namespace lk$/;"	n
+lk	include/VideoProvider.hpp	/^namespace lk$/;"	n
+load	include/TrackFile.hpp	/^				void load (Container& data)$/;"	f	class:lk::TrackFile
+loadData	src/test/TrackFileTest.cpp	/^const bool test::TrackFileTest::loadData () const$/;"	f	class:test::TrackFileTest
+locations	include/NoteGenerator.hpp	/^			std::vector<float> locations;$/;"	m	class:lk::NoteGenerator
+locations	include/NoteProvider.hpp	/^			std::vector<float> locations;$/;"	m	class:lk::NoteProvider
+lowpass	include/interpolation.hpp	/^		void lowpass (Iterator it, Iterator end, Iterator out, double filterFactor)$/;"	f	namespace:interpolation
+lowpass	include/interpolation.hpp	/^		void lowpass (Iterator it, const T value0, const T value1, size_t nSteps, double filterFactor=0.5)$/;"	f	namespace:interpolation
+lowpass	src/test/InterpolationTest.cpp	/^const bool test::InterpolationTest::lowpass () const$/;"	f	class:test::InterpolationTest
+main	src/analysis.cpp	/^int main (int argc, char** argv)$/;"	f
+main	src/main.cpp	/^int main (int argc, char** argv)$/;"	f
+main	src/sample.cpp	/^int main (int argc, char** argv)$/;"	f
+main	src/test/test.cpp	/^int main (int argc, char** argv)$/;"	f
+main_assemblies	GNUmakefile	/^main_assemblies = VideoProvider.o HandTracker.o PointAccountant.o SoundGenerator.o BgSoundGenerator.o NoteGenerator.o LinearConverter.o Note.o NoteProvider.o$/;"	m
+main_executable	GNUmakefile	/^main_executable = main.lk$/;"	m
+mirror	src/VideoProvider.cpp	/^void lk::VideoProvider::mirror (cv::Mat& frame)$/;"	f	class:lk::VideoProvider
+mirrorMapX	include/VideoProvider.hpp	/^			cv::Mat mirrorMapX;$/;"	m	class:lk::VideoProvider
+mirrorMapY	include/VideoProvider.hpp	/^			cv::Mat mirrorMapY;$/;"	m	class:lk::VideoProvider
+mouseClick	src/sample.cpp	/^static void mouseClick (int event, int x, int y, int, void*)$/;"	f	file:
+mutex	include/SoundGenerator.hpp	/^			std::mutex mutex;$/;"	m	class:lk::SoundGenerator
+name	include/Note.hpp	/^		const std::string name;$/;"	m	struct:lk::Note
+nc	include/NoteGenerator.hpp	/^			NoteGenerator (NoteGenerator& nc) = delete;$/;"	m	class:lk::NoteGenerator
+nc	include/NoteGenerator.hpp	/^			NoteGenerator operator=(NoteGenerator& nc) = delete;$/;"	m	class:lk::NoteGenerator
+negativeCalcs	src/test/LinearConverterTest.cpp	/^const bool test::LinearConverterTest::negativeCalcs () const$/;"	f	class:test::LinearConverterTest
+nextPts	include/LKData.hpp	/^		std::vector<cv::Point2f> nextPts;$/;"	m	struct:lk::LKData
+note	include/Note.hpp	/^		Note (const Note& note) = default;$/;"	m	struct:lk::Note
+note	include/Note.hpp	/^		Note& operator= (const Note& note) = delete;$/;"	m	struct:lk::Note
+noteDist	include/NoteGenerator.hpp	/^			const size_t noteDist;$/;"	m	class:lk::NoteGenerator
+noteDist	include/NoteProvider.hpp	/^			const size_t noteDist;$/;"	m	class:lk::NoteProvider
+noteMax	include/NoteGenerator.hpp	/^			const size_t noteMax;$/;"	m	class:lk::NoteGenerator
+noteMax	include/NoteProvider.hpp	/^			const size_t noteMax;$/;"	m	class:lk::NoteProvider
+noteMin	include/NoteGenerator.hpp	/^			const size_t noteMin;$/;"	m	class:lk::NoteGenerator
+noteMin	include/NoteProvider.hpp	/^			const size_t noteMin;$/;"	m	class:lk::NoteProvider
+notes	include/NoteProvider.hpp	/^			std::vector<Note> notes;$/;"	m	class:lk::NoteProvider
+np	include/NoteProvider.hpp	/^			NoteProvider operator=(NoteProvider& np) = delete;$/;"	m	class:lk::NoteProvider
+np	include/NoteProvider.hpp	/^			NoteProvider(NoteProvider& np) = delete;$/;"	m	class:lk::NoteProvider
+octave	include/Note.hpp	/^		const size_t octave;$/;"	m	struct:lk::Note
+operator <<	include/LKStats.hpp	/^inline std::ostream& operator<<(std::ostream& ostr, const lk::LKStats& stats)$/;"	f
+operator <<	src/HandTracker.cpp	/^std::ostream& operator<<(std::ostream& ostr, const lk::HandTracker& ht)$/;"	f
+operator <<	src/Note.cpp	/^std::ostream& operator<< (std::ostream& ostr, const lk::Note note)$/;"	f
+operator <<	src/Profiler.cpp	/^std::ostream& operator<<(std::ostream& ostr, const lk::Profiler& pr)$/;"	f
+operator <<	src/SoundGenerator.cpp	/^std::ostream& operator<<(std::ostream& ostr, lk::SoundGenerator soundGen)$/;"	f
+operator <<	src/TrackFile.cpp	/^std::ostream& lk::operator<<(std::ostream& ostr, const lk::trackDatum d)$/;"	f	class:lk
+operator <<	src/VideoProvider.cpp	/^std::ostream& operator<<(std::ostream& ostr, const lk::VideoProvider& vp)$/;"	f
+operator <<	src/test/PointAccountantTest.cpp	/^std::ostream& operator<<(std::ostream& ostr, const test::PointAccountantTest pat)$/;"	f
+override	include/test/InterpolationTest.hpp	/^			bool run () override;$/;"	m	class:test::InterpolationTest
+override	include/test/InterpolationTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::InterpolationTest
+override	include/test/LinearConverterTest.hpp	/^			bool run () override;$/;"	m	class:test::LinearConverterTest
+override	include/test/LinearConverterTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::LinearConverterTest
+override	include/test/NoteGeneratorTest.hpp	/^			bool run () override;$/;"	m	class:test::NoteGeneratorTest
+override	include/test/NoteGeneratorTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::NoteGeneratorTest
+override	include/test/NoteTest.hpp	/^			bool run () override;$/;"	m	class:test::NoteTest
+override	include/test/NoteTest.hpp	/^			const std::string getName() const override;$/;"	m	class:test::NoteTest
+override	include/test/PointAccountantTest.hpp	/^			bool run () override;$/;"	m	class:test::PointAccountantTest
+override	include/test/PointAccountantTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::PointAccountantTest
+override	include/test/StatisticsTest.hpp	/^			bool run () override;$/;"	m	class:test::StatisticsTest
+override	include/test/StatisticsTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::StatisticsTest
+override	include/test/TrackFileTest.hpp	/^			bool run () override;$/;"	m	class:test::TrackFileTest
+override	include/test/TrackFileTest.hpp	/^			const std::string getName () const override;$/;"	m	class:test::TrackFileTest
+pa	include/HandTracker.hpp	/^			PointAccountant pa;$/;"	m	class:lk::HandTracker
+pause	src/sample.cpp	/^static bool pause = false;$/;"	v	file:
+play	include/SoundGenerator.hpp	/^			std::atomic<bool> play;$/;"	m	class:lk::SoundGenerator
+pos	include/HandTracker.hpp	/^			cv::Point pos;$/;"	m	class:lk::HandTracker
+positiveCalcs	src/test/LinearConverterTest.cpp	/^const bool test::LinearConverterTest::positiveCalcs () const$/;"	f	class:test::LinearConverterTest
+prevCenter	include/PointAccountant.hpp	/^			cv::Point2f prevCenter;$/;"	m	class:lk::PointAccountant
+prevImageLK	include/HandTracker.hpp	/^			cv::Mat prevImageLK;$/;"	m	class:lk::HandTracker
+prevPts	include/LKData.hpp	/^		std::vector<cv::Point2f> prevPts;$/;"	m	struct:lk::LKData
+range	include/LKStats.hpp	/^		cv::Point2f range;$/;"	m	struct:lk::LKStats
+realTimeOutput	include/SoundGenerator.hpp	/^			std::unique_ptr<stk::RtWvOut> realTimeOutput;$/;"	m	class:lk::SoundGenerator
+replenish	src/PointAccountant.cpp	/^void lk::PointAccountant::replenish (std::vector<cv::Point2f>& points)$/;"	f	class:lk::PointAccountant
+replenish	src/test/PointAccountantTest.cpp	/^bool test::PointAccountantTest::replenish ()$/;"	f	class:test::PointAccountantTest
+rhs	include/TrackFile.hpp	/^			TrackFile& operator=(const TrackFile& rhs) = delete;$/;"	m	class:lk::TrackFile
+run	src/test/InterpolationTest.cpp	/^bool test::InterpolationTest::run ()$/;"	f	class:test::InterpolationTest
+run	src/test/LinearConverterTest.cpp	/^bool test::LinearConverterTest::run ()$/;"	f	class:test::LinearConverterTest
+run	src/test/NoteGeneratorTest.cpp	/^bool test::NoteGeneratorTest::run ()$/;"	f	class:test::NoteGeneratorTest
+run	src/test/NoteTest.cpp	/^bool test::NoteTest::run ()$/;"	f	class:test::NoteTest
+run	src/test/PointAccountantTest.cpp	/^bool test::PointAccountantTest::run ()$/;"	f	class:test::PointAccountantTest
+run	src/test/StatisticsTest.cpp	/^bool test::StatisticsTest::run ()$/;"	f	class:test::StatisticsTest
+run	src/test/TrackFileTest.cpp	/^bool test::TrackFileTest::run ()$/;"	f	class:test::TrackFileTest
+sample_assemblies	GNUmakefile	/^sample_assemblies = TrackFile.o VideoProvider.o$/;"	m
+sample_entry_point	GNUmakefile	/^sample_entry_point = sample.cpp$/;"	m
+sample_executable	GNUmakefile	/^sample_executable = sample.lk$/;"	m
+save	include/TrackFile.hpp	/^				void save (const Container& data)$/;"	f	class:lk::TrackFile
+semitone	include/Note.hpp	/^		const size_t semitone;$/;"	m	struct:lk::Note
+setCheckPoint	src/Profiler.cpp	/^void lk::Profiler::setCheckPoint (size_t n)$/;"	f	class:lk::Profiler
+setFrequency	src/BgSoundGenerator.cpp	/^void lk::BgSoundGenerator::setFrequency (float value)$/;"	f	class:lk::BgSoundGenerator
+setFrequency	src/SoundGenerator.cpp	/^void lk::SoundGenerator::setFrequency (float value)$/;"	f	class:lk::SoundGenerator
+setPlay	src/SoundGenerator.cpp	/^void lk::SoundGenerator::setPlay (bool value)$/;"	f	class:lk::SoundGenerator
+setXRange	src/LinearConverter.cpp	/^void lk::LinearConverter::setXRange (float min, float max)$/;"	f	class:lk::LinearConverter
+setYRange	src/LinearConverter.cpp	/^void lk::LinearConverter::setYRange (float min, float max)$/;"	f	class:lk::LinearConverter
+sharpen	src/HandTracker.cpp	/^void lk::HandTracker::sharpen (const cv::Mat& in, cv::Mat& out) const$/;"	f	class:lk::HandTracker
+shouldMirror	include/VideoProvider.hpp	/^			bool shouldMirror;$/;"	m	class:lk::VideoProvider
+sineWave	include/SoundGenerator.hpp	/^			stk::SineWave sineWave;$/;"	m	class:lk::SoundGenerator
+smooth	include/interpolation.hpp	/^		void smooth (Iterator it, Iterator end, Iterator out, size_t nSteps)$/;"	f	namespace:interpolation
+smoothStep	include/interpolation.hpp	/^			T smoothStep (T y0, T y1, T mu)$/;"	f	namespace:interpolation::details
+smoothstep	src/test/InterpolationTest.cpp	/^const bool test::InterpolationTest::smoothstep () const$/;"	f	class:test::InterpolationTest
+soundGen	include/BgSoundGenerator.hpp	/^			SoundGenerator soundGen;$/;"	m	class:lk::BgSoundGenerator
+spawn	src/PointAccountant.cpp	/^void lk::PointAccountant::spawn (const cv::Point2f& centerPoint, std::vector<cv::Point2f>& points, const size_t ptsToSpawn)$/;"	f	class:lk::PointAccountant
+spline	include/interpolation.hpp	/^		void spline (Iterator it, Iterator end, Iterator out, size_t nSteps)$/;"	f	namespace:interpolation
+spline	src/test/InterpolationTest.cpp	/^const bool test::InterpolationTest::spline () const$/;"	f	class:test::InterpolationTest
+splineStep	include/interpolation.hpp	/^			T splineStep (T y0, T y1, T y2, T y3, T mu)$/;"	f	namespace:interpolation::details
+stDev	include/LKStats.hpp	/^		cv::Point2f stDev;$/;"	m	struct:lk::LKStats
+start	src/BgSoundGenerator.cpp	/^void lk::BgSoundGenerator::start ()$/;"	f	class:lk::BgSoundGenerator
+start	src/SoundGenerator.cpp	/^void lk::SoundGenerator::start ()$/;"	f	class:lk::SoundGenerator
+statistics	include/statistics.hpp	/^namespace statistics$/;"	n
+status	include/LKData.hpp	/^		std::vector<unsigned char> status;$/;"	m	struct:lk::LKData
+stickyInt	src/NoteGenerator.cpp	/^const float lk::NoteGenerator::stickyInt (float value) const$/;"	f	class:lk::NoteGenerator
+stop	src/BgSoundGenerator.cpp	/^void lk::BgSoundGenerator::stop ()$/;"	f	class:lk::BgSoundGenerator
+t	include/BgSoundGenerator.hpp	/^			std::thread t;$/;"	m	class:lk::BgSoundGenerator
+termCrit	include/HandTracker.hpp	/^			const cv::TermCriteria termCrit;$/;"	m	class:lk::HandTracker
+test	include/test/InterpolationTest.hpp	/^namespace test$/;"	n
+test	include/test/LinearConverterTest.hpp	/^namespace test$/;"	n
+test	include/test/NoteGeneratorTest.hpp	/^namespace test$/;"	n
+test	include/test/NoteTest.hpp	/^namespace test$/;"	n
+test	include/test/PointAccountantTest.hpp	/^namespace test$/;"	n
+test	include/test/StatisticsTest.hpp	/^namespace test$/;"	n
+test	include/test/TestBase.hpp	/^namespace test$/;"	n
+test	include/test/TrackFileTest.hpp	/^namespace test$/;"	n
+test_assemblies	GNUmakefile	/^test_assemblies = PointAccountantTest.o LinearConverterTest.o NoteGeneratorTest.o NoteTest.o InterpolationTest.o TrackFileTest.o StatisticsTest.o$/;"	m
+test_entry_point	GNUmakefile	/^test_entry_point = test.cpp$/;"	m
+test_executable	GNUmakefile	/^test_executable = test.lk$/;"	m
+timeout	include/VideoProvider.hpp	/^			const size_t timeout;$/;"	m	class:lk::VideoProvider
+trackDatum	include/TrackFile.hpp	/^	typedef std::pair<size_t, cv::Point2d> trackDatum;$/;"	t	namespace:lk
+update	src/HandTracker.cpp	/^void lk::HandTracker::update (cv::Mat& frame, bool shouldSharpen)$/;"	f	class:lk::HandTracker
+usingVideoFile	include/VideoProvider.hpp	/^			const bool usingVideoFile;$/;"	m	class:lk::VideoProvider
+variance	include/statistics.hpp	/^		const double variance (Iterator it, Iterator end)$/;"	f	namespace:statistics
+variance	include/statistics.hpp	/^		const double variance (Iterator it, Iterator end, const Function selector)$/;"	f	namespace:statistics
+variance	src/test/StatisticsTest.cpp	/^const bool test::StatisticsTest::variance () const$/;"	f	class:test::StatisticsTest
+vp	include/VideoProvider.hpp	/^			VideoProvider (const VideoProvider& vp) = delete;$/;"	m	class:lk::VideoProvider
+vp	include/VideoProvider.hpp	/^			VideoProvider& operator=(VideoProvider vp) = delete;$/;"	m	class:lk::VideoProvider
+weed	src/PointAccountant.cpp	/^void lk::PointAccountant::weed (lk::LKData& data, const bool respawn)$/;"	f	class:lk::PointAccountant
+weed	src/test/PointAccountantTest.cpp	/^bool test::PointAccountantTest::weed ()$/;"	f	class:test::PointAccountantTest
+winSize	include/HandTracker.hpp	/^			const cv::Size winSize;$/;"	m	class:lk::HandTracker
+withinBounds	src/PointAccountant.cpp	/^bool lk::PointAccountant::withinBounds (const cv::Point2f& pt)$/;"	f	class:lk::PointAccountant
+xDist	include/LinearConverter.hpp	/^			float xMin, xMax, xDist;$/;"	m	class:lk::LinearConverter
+xMax	include/LinearConverter.hpp	/^			float xMin, xMax, xDist;$/;"	m	class:lk::LinearConverter
+xMin	include/LinearConverter.hpp	/^			float xMin, xMax, xDist;$/;"	m	class:lk::LinearConverter
+yDist	include/LinearConverter.hpp	/^			float yMin, yMax, yDist;$/;"	m	class:lk::LinearConverter
+yMax	include/LinearConverter.hpp	/^			float yMin, yMax, yDist;$/;"	m	class:lk::LinearConverter
+yMin	include/LinearConverter.hpp	/^			float yMin, yMax, yDist;$/;"	m	class:lk::LinearConverter
+~BgSoundGenerator	src/BgSoundGenerator.cpp	/^lk::BgSoundGenerator::~BgSoundGenerator ()$/;"	f	class:lk::BgSoundGenerator
+~SoundGenerator	src/SoundGenerator.cpp	/^lk::SoundGenerator::~SoundGenerator ()$/;"	f	class:lk::SoundGenerator
+~TrackFile	src/TrackFile.cpp	/^lk::TrackFile::~TrackFile ()$/;"	f	class:lk::TrackFile
